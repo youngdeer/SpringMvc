@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <h2>spring mvc ÊµÀý</h2>
+    <h2>spring mvc ÊµÀý,Hi Deer</h2>
     <form action="login.html" method="post">  
     username:<input type="text" name="username" />  
     <p>  
