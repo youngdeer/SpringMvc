@@ -27,11 +27,11 @@
        		<constructor-arg index="0" value="instanceFactory"></constructor-arg>
        </bean>
        
-       <bean id="resourceBean" class="springTest.beans.ResourceBean" init-method="init" destroy-method="destroy">
-       		<property name="file" vlaue="E:/example/deer.txt"></property>
-       </bean>
-       
-       <bean id="dependentBean" class="springTest.beans.DependentBean" init-method="init" destroy-method="destory" depends-on="resourceBean">
-       		<property name="resourceBean" ref="resourceBean"></property>
-       </bean>
+<!--       <bean id="resourceBean" class="springTest.beans.ResourceBean" init-method="init" destroy-method="destroy">-->
+<!--       		<property name="file" vlaue="E:/example/deer.txt"></property>-->
+<!--       </bean>-->
+<!--       -->
+<!--       <bean id="dependentBean" class="springTest.beans.DependentBean" init-method="init" destroy-method="destory" depends-on="resourceBean">-->
+<!--       		<property name="resourceBean" ref="resourceBean"></property>-->
+<!--       </bean>-->
 </beans> 
