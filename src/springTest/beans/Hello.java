@@ -1,6 +1,8 @@
 package springTest.beans;
 
 public class Hello {
+	public static final int MAX = 5;
+	
 	public Hello(){
 		this.name = "noParam";
 	}
