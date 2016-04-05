@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+                http://www.springframework.org/schema/context  
+                 http://www.springframework.org/schema/context/spring-context-3.2.xsd  
+                http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+                http://www.springframework.org/schema/aop
+				http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+				
+	<bean id="helloWorldService" class="springTest.aop.service.impl.HelloWorldService"></bean>  
+	
+	<bean id="helloWorldAspect" class="springTest.aop.HelloWorldAspect"></bean>
+	<aop:config>
+		<aop:pointcut expression="execution(* springTest.aop..*.*(..)) and args(param)" id="pointcut"/>
+		<aop:aspect ref="helloWorldAspect">
+			<aop:before pointcut-ref="pointcut" method="beforeAdvice(java.lang.String)" arg-names="param"/>
+			<aop:after-returning pointcut="execution(* springTest.aop..*.sayAfterReturning(..))" method="afterReturningAdvice" returning="retVal"/>
+			<aop:after-throwing pointcut="execution(* springTest.aop..*.sayAfterThrowing(..))" method="afterThrowingAdvice" throwing="exception"/>
+			<aop:around pointcut="execution(* springTest.aop..*.sayAround(..))" method="aroundAdvice"/>
+			<aop:after pointcut="execution(* springTest.aop..*.*(..)) and args(param)" method="afterFinallyAdvice(java.lang.String)" arg-names="param"/>
+		</aop:aspect>
+	</aop:config>
+                
+</beans>                
