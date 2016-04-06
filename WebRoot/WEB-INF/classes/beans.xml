@@ -27,6 +27,12 @@
        		<constructor-arg index="0" value="instanceFactory"></constructor-arg>
        </bean>
        
+       
+       <import resource="classpath:dsContext.xml" />
+       <bean id="testDao" class="springTest.dao.imp.TestDao">
+       		<property name="dataSource" ref="datasource"></property>
+       </bean>
+       
 <!--       <bean id="resourceBean" class="springTest.beans.ResourceBean" init-method="init" destroy-method="destroy">-->
 <!--       		<property name="file" vlaue="E:/example/deer.txt"></property>-->
 <!--       </bean>-->
