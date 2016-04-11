@@ -48,5 +48,7 @@
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/alibabaJson.jar"/>
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/commons-codec-1.4.jar"/>
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/druid-1.0.16.jar"/>
+	<classpathentry kind="lib" path="E:/ly_personal/jar包/mybatis-3.2.8/mybatis-3.2.8.jar"/>
+	<classpathentry kind="lib" path="E:/ly_personal/jar包/mybatis-spring-1.2.1.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
