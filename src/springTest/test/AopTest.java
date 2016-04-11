@@ -16,9 +16,9 @@ public class AopTest {
 		
 		helloWorldService.sayAfterReturning();
 		
-		System.out.println("----------------------------");
+		System.out.println("--------------**--------------");
 		helloWorldService.sayAround("lalalala");
-		System.out.println("----------------------------");
+		System.out.println("---------------**-------------");
 		
 		helloWorldService.sayAfterThrowing();
 	}
