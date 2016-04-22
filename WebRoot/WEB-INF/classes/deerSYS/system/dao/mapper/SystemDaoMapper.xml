@@ -14,5 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="username!='' and username!=null">
 				and username = #{username}
 			</if>
+			<if test="password!='' and password!=null">
+				and password = #{password}
+			</if>
 	</select>
 </mapper>

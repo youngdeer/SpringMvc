@@ -42,6 +42,16 @@ public class SystemService {
 	}
 	
 	/**
+	 * login页面
+	 * deer
+	 */
+	@RequestMapping("/toLogin")
+	public ModelAndView toLogin(){
+		ModelAndView mav = new ModelAndView("deerSYS/page/login/login");  
+        return mav;  
+	}
+	
+	/**
 	 * 提交注册
 	 * deer
 	 */
@@ -75,5 +85,37 @@ public class SystemService {
 			falg = false;
 		}
 		return falg;
+	}
+	
+	/**
+	 * 验证用户名密码是否匹配
+	 * deer
+	 */
+	public boolean isMatch(String username,String password){
+		boolean falg = true;
+		HashMap map = new HashMap();
+		map.put("username", username);
+		map.put("password", password);
+		List<HashMap> list = systemDao.userAccountList(map);
+		if(list == null || list.size() == 0){
+			falg = false;
+		}
+		return falg;
+	}
+	
+	/**
+	 * 用户登陆
+	 * deer
+	 */
+	@RequestMapping("/userLogin")
+	@ResponseBody
+	public HashMap userLogin(@RequestParam("username") String username,@RequestParam("password") String password){
+		HashMap outputData = new HashMap();
+		if(isMatch(username,password)){
+			outputData.put("result", 1);
+		}else{
+			outputData.put("result", 2);
+		}
+		return outputData;
 	}
 }

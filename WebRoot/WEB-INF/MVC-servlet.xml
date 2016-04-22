@@ -14,38 +14,38 @@
     <context:component-scan base-package="wechat"></context:component-scan>
     <context:component-scan base-package="deerSYS"></context:component-scan>
 
-<!--	<mvc:annotation-driven/>-->
+	<mvc:annotation-driven/>
 	<!-- 注解请求映射  -->
-    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">        
+<!--    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">        -->
 <!--        <property name="interceptors">-->
 <!--            <list>  -->
 <!--                <ref bean="logNDCInteceptor"/>    日志拦截器，这是你自定义的拦截器 -->
 <!--            </list>        -->
 <!--        </property>        -->
-    </bean>      
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-        <property name="messageConverters">  
-            <list>  
-                <ref bean="jackson_hmc" />  
-            </list>  
-        </property>  
-    </bean>
+<!--    </bean>      -->
+<!--    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
+<!--        <property name="messageConverters">  -->
+<!--            <list>  -->
+<!--                <ref bean="jackson_hmc" />  -->
+<!--            </list>  -->
+<!--        </property>  -->
+<!--    </bean>-->
     
     <!-- 处理json-->
-    <bean id="jackson_hmc" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" >
-    	<property name="supportedMediaTypes">    
-	        <list>    
-	            <value>text/html;charset=UTF-8</value>    
-	        </list>    
-	    </property>
-    </bean>
+<!--    <bean id="jackson_hmc" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" >-->
+<!--    	<property name="supportedMediaTypes">    -->
+<!--	        <list>    -->
+<!--	            <value>text/html;charset=UTF-8</value>    -->
+<!--	        </list>    -->
+<!--	    </property>-->
+<!--    </bean>-->
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/page/" p:suffix=".jsp" />
 
-<!--	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:defaultEncoding="utf-8" />-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:defaultEncoding="utf-8" />
 
-<!--	<bean id="httpRequestHandlerAdapter" class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />-->
-<!--	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />-->
+	<bean id="httpRequestHandlerAdapter" class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
 
 
 </beans>

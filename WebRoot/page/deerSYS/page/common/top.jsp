@@ -8,13 +8,13 @@
 			<div class="nav-collapse">
 				<ul class="nav">
 					<li>
-						<a href="<%=basePath%>deerSYS/toIndex.html">Home</a>
+						<a href="<%=basePath%>deerSYS/toIndex.do">Home</a>
 					</li>
 					<li>
-						<a href="/login">Login</a>
+						<a href="<%=basePath%>deerSYS/toLogin.do">Login</a>
 					</li>
 					<li>
-						<a href="<%=basePath%>deerSYS/toRegist.html">Register</a>
+						<a href="<%=basePath%>deerSYS/toRegist.do">Register</a>
 					</li>
 					<li>
 						<a href="/mobileReg">mobileReg</a>

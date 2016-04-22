@@ -21,8 +21,8 @@
 					deerSYS is a java system
 				</p>
 				<p>
-					<a href="/login" class="btn btn-primary btn-large">login</a>
-					<a href="<%=basePath%>deerSYS/toRegist.html" class="btn btn-large">register</a>
+					<a href="<%=basePath%>deerSYS/toLogin.do" class="btn btn-primary btn-large">login</a>
+					<a href="<%=basePath%>deerSYS/toRegist.do" class="btn btn-large">register</a>
 					<a href="/mobileReg" class="btn btn-info btn-large">mobileReg</a>
 				</p>
 			</div>
