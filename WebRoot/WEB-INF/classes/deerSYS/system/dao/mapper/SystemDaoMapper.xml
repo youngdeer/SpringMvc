@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="deerSYS.system.dao.mapper.SystemDaoMapper">
+	<insert id="insertUserAccount" parameterType="HashMap">
+		insert into user_account values(uuid(),#{username},#{password});
+	</insert>
+	
+	<select id="userAccountList" parameterType="HashMap" resultType="HashMap">
+		select * from user_account
+			where 1=1
+			<if test="username!='' and username!=null">
+				and username = #{username}
+			</if>
+	</select>
+</mapper>

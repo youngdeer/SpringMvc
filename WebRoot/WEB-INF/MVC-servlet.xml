@@ -1,30 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>  
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"  
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"  
-    xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"  
-    xmlns:context="http://www.springframework.org/schema/context"  
-    xmlns:mvc="http://www.springframework.org/schema/mvc" 
-    xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd  
-                http://www.springframework.org/schema/aop  
-                http://www.springframework.org/schema/aop/spring-aop-3.2.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">  
-    
-<!--    <mvc:annotation-driven/>-->
-    <!-- SpringMVC配置 -->  
-      
-    <!-- 通过component-scan 让Spring扫描org.swinglife.controller下的所有的类，让Spring的代码注解生效 -->  
-    <context:component-scan base-package="org.swinglife.controller"></context:component-scan>  
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd   
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd   
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd   
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+	default-lazy-init="true">
+
+	<context:component-scan base-package="org.swinglife.controller"></context:component-scan>  
     <context:component-scan base-package="springTest"></context:component-scan>
     <context:component-scan base-package="wechat"></context:component-scan>
     <context:component-scan base-package="deerSYS"></context:component-scan>
-      
-    <!-- 配置SpringMVC的视图渲染器， 让其前缀为:/ 后缀为.jsp  将视图渲染到/page/<method返回值>.jsp中 -->  
-    <beans:bean  
-        class="org.springframework.web.servlet.view.InternalResourceViewResolver"  
-        p:prefix="/page/" p:suffix=".jsp">  
-        </beans:bean>  
-<!--  	<bean id="httpRequestHandlerAdapter" class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />-->
+
+<!--	<mvc:annotation-driven/>-->
+	<!-- 注解请求映射  -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">        
+<!--        <property name="interceptors">-->
+<!--            <list>  -->
+<!--                <ref bean="logNDCInteceptor"/>    日志拦截器，这是你自定义的拦截器 -->
+<!--            </list>        -->
+<!--        </property>        -->
+    </bean>      
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">  
+            <list>  
+                <ref bean="jackson_hmc" />  
+            </list>  
+        </property>  
+    </bean>
+    
+    <!-- 处理json-->
+    <bean id="jackson_hmc" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" >
+    	<property name="supportedMediaTypes">    
+	        <list>    
+	            <value>text/html;charset=UTF-8</value>    
+	        </list>    
+	    </property>
+    </bean>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/page/" p:suffix=".jsp" />
+
+<!--	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:defaultEncoding="utf-8" />-->
+
+<!--	<bean id="httpRequestHandlerAdapter" class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />-->
 <!--	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />-->
-  	
-</beans:beans> 
+
+
+</beans>
+

@@ -16,7 +16,7 @@ public class ContractController {
 			Contract contract,BindingResult result){
 		System.out.println("FirstName :" + contract.getFirstname()+
 				" LastName :" + contract.getLastname());
-		return "redirect:contacts.html";
+		return "redirect:contacts.do";
 	}
 	
 	@RequestMapping("/contacts")

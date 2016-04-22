@@ -12,6 +12,7 @@
 
 	<body>
 		<%@include file="/page/deerSYS/page/common/top.jsp"%>
+		
 		<div id="container" class="container">
 			<form method="post" class="form-horizontal">
 				<fieldset>

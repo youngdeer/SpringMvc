@@ -37,14 +37,22 @@
     </servlet>  
   
     <!-- 配置DispatcherServlet所需要拦截的 url -->  
-    <servlet-mapping>  
-        <servlet-name>MVC</servlet-name>  
-        <url-pattern>*.html</url-pattern>  
-    </servlet-mapping>
-    <servlet-mapping>  
-        <servlet-name>MVC</servlet-name>  
-        <url-pattern>*.json</url-pattern>  
-    </servlet-mapping>  
+    <servlet-mapping>
+		<servlet-name>MVC</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>MVC</servlet-name>-->
+<!--		<url-pattern>*.json</url-pattern>-->
+<!--	</servlet-mapping>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>MVC</servlet-name>-->
+<!--		<url-pattern>*.xlsx</url-pattern>-->
+<!--	</servlet-mapping>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>MVC</servlet-name>-->
+<!--		<url-pattern>*.pdfx</url-pattern>-->
+<!--	</servlet-mapping>  -->
   
 <!--	<filter>-->
 <!--		<filter-name>IpFilter</filter-name>-->
