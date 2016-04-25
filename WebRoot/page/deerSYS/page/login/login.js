@@ -19,6 +19,7 @@ function userLogin(){
 	ajax("post",basePath+"deerSYS/userLogin.do",inputData,function(data){
 		if(data.result == 1){
 			alert("login success");
+			window.location = basePath+"deerSYS/toIndex.do";
 		}else if(data.result == 2){
 			alert("login fail");
 		};

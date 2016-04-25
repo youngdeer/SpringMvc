@@ -3,6 +3,9 @@ package deerSYS.system.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import deerSYS.common.CommonService;
 import deerSYS.system.dao.SystemDao;
 
 @Controller
@@ -20,6 +24,8 @@ public class SystemService {
 	
 	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 	SystemDao systemDao = (SystemDao) context.getBean("systemDao");
+	
+	CommonService commonService = new CommonService();
 	
 	/**
 	 * index页面
@@ -109,13 +115,27 @@ public class SystemService {
 	 */
 	@RequestMapping("/userLogin")
 	@ResponseBody
-	public HashMap userLogin(@RequestParam("username") String username,@RequestParam("password") String password){
+	public HashMap userLogin(@RequestParam("username") String username,@RequestParam("password") String password,
+			HttpServletRequest request, HttpServletResponse response){
 		HashMap outputData = new HashMap();
 		if(isMatch(username,password)){
+			commonService.addSession(request, "username", username);
+//			System.out.println(request.getSession().getAttribute("username"));
 			outputData.put("result", 1);
 		}else{
 			outputData.put("result", 2);
 		}
 		return outputData;
+	}
+	
+	/**
+	 * 用户登出
+	 * deer
+	 */
+	@RequestMapping("/userLogout")
+	public ModelAndView userLogout(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mav = new ModelAndView("deerSYS/page/index/index");  
+		commonService.removeSession(request, "username");
+        return mav; 
 	}
 }
