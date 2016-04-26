@@ -11,3 +11,11 @@ function ajax(type,url,data,callback){
          success: callback
      });
 }
+
+/**
+ * save单表封装
+ * param tableName
+ */
+function save(tableName){
+	
+}
