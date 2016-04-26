@@ -17,5 +17,18 @@ function ajax(type,url,data,callback){
  * param tableName
  */
 function save(tableName){
-	
+	var data = "{";
+	$("#"+tableName).find("input").each(function(index,item){
+		var key = $(item).attr("id");
+		var value = $(item).val();
+		data += ""+key+":"+value+",";
+	});
+	data +="}";
+	ajax("post",basePath+"deerSYS/save.do",
+		{
+			"tableName":tableName,
+			"data":data
+		},function(data){
+		
+	});
 }

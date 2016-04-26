@@ -41,6 +41,10 @@
        		<property name="dataSource" ref="datasource"></property>
        </bean>
        
+       <bean id="commonDao" class="deerSYS.common.CommonDao">
+       		<property name="dataSource" ref="datasource"></property>
+       </bean>
+       
        <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
        		<property name="configLocation" value="classpath:mybatisConf.xml"></property>
        		<property name="dataSource" ref="datasource"></property>

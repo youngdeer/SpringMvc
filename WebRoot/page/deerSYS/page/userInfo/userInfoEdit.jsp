@@ -7,8 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<%@include file="/page/deerSYS/page/common/incCssjs.jsp"%>
 
-		<script src="<%=basePath%>page/deerSYS/page/userInfo/userInfoEdit.js">
-</script>
+		<script src="<%=basePath%>page/deerSYS/page/userInfo/userInfoEdit.js"></script>
 	</head>
 
 	<body>
