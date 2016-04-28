@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.sf.json.JSONObject;
@@ -38,7 +39,7 @@ public class CommonService {
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public boolean save(String tableName,String data){
+	public boolean save(@RequestParam("tableName")String tableName,@RequestParam("data")String data){
 		boolean result = true;
 		HashMap tableContent = new HashMap();
 		JSONObject messageData = JSONObject.fromObject(data);

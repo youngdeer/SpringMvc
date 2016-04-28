@@ -13,6 +13,12 @@
 	<body>
 		<%@include file="/page/deerSYS/page/common/top.jsp"%>
 		<div id="container" class="container">
+			<form id="headSearch">
+				<span>truename</span><input id="truename">
+				<span>age</span><input id="age">
+				<button type="button" onclick="search()">search</button>
+			</form>
+			<hr>
 			<table class="table table-bordered">
 				<thead>
 					<th>

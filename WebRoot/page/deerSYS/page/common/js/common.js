@@ -33,3 +33,19 @@ function save(tableName){
 			window.location = basePath+"deerSYS/toUserInfoList.do";
 	});
 }
+
+
+/**
+ * 列表条件搜索封装
+ * form id必须为headSearch
+ */
+function search(){
+	var data = "{";
+	$("#headSearch").find("input").each(function(index,item){
+		var key = $(item).attr("id");
+		var value = $(item).val();
+		data += ""+key+":'"+value+"',";
+	});
+	data +="}";
+	window.location = basePath+"deerSYS/toUserInfoList.do?searchData="+data;
+}

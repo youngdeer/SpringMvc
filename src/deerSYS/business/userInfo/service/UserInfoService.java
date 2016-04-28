@@ -1,12 +1,16 @@
 package deerSYS.business.userInfo.service;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+
+import net.sf.json.JSONObject;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import deerSYS.business.userInfo.dao.UserInfoDao;
@@ -33,8 +37,14 @@ public class UserInfoService {
 	 * deer
 	 */
 	@RequestMapping("/toUserInfoList")
-	public ModelAndView toUserInfoList(){
+	public ModelAndView toUserInfoList(String searchData){
 		HashMap searchMap = new HashMap();
+		JSONObject messageData = JSONObject.fromObject(searchData);
+		Iterator<String> keys = messageData.keys();
+		while(keys.hasNext()){
+			String key  = keys.next();
+			searchMap.put(key, messageData.get(key));
+		}
 		ModelAndView mav = new ModelAndView("deerSYS/page/userInfo/userInfoList");
 		List userInfoList = userInfoDao.userInfoList(searchMap);
 		mav.addObject("userInfoList", userInfoList);
