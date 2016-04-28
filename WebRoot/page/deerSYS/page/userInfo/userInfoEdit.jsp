@@ -13,7 +13,7 @@
 	<body>
 		<%@include file="/page/deerSYS/page/common/top.jsp"%>
 		<div id="container" class="container">
-			<form id="userInfo" method="post">
+			<form id="UserInfo" method="post">
 				<fieldset>
 					<legend>
 						user Info
@@ -64,7 +64,7 @@
 						</div>
 					</div>
 					<div class="form-actions">
-						<button type="button" class="btn btn-primary" onclick="save('userInfo')">
+						<button type="button" class="btn btn-primary" onclick="save('UserInfo')">
 							save
 						</button>
 					</div>

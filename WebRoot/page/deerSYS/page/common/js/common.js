@@ -30,7 +30,7 @@ function save(tableName){
 			"data":data
 		},function(data){
 			alert(data);
-			window.location = basePath+"deerSYS/toUserInfoList.do";
+			window.location = basePath+"deerSYS/to"+tableName+"List.do";
 	});
 }
 
@@ -39,7 +39,7 @@ function save(tableName){
  * 列表条件搜索封装
  * form id必须为headSearch
  */
-function search(){
+function search(tableName){
 	var data = "{";
 	$("#headSearch").find("input").each(function(index,item){
 		var key = $(item).attr("id");
@@ -47,5 +47,5 @@ function search(){
 		data += ""+key+":'"+value+"',";
 	});
 	data +="}";
-	window.location = basePath+"deerSYS/toUserInfoList.do?searchData="+data;
+	window.location = basePath+"deerSYS/to"+tableName+"List.do?searchData="+data;
 }

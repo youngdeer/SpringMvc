@@ -14,5 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="truename!='' and truename!=null">
 				and truename = #{truename}
 			</if>
+			<if test="age!='' and age!=null">
+				and age = #{age}
+			</if>
 	</select>
 </mapper>

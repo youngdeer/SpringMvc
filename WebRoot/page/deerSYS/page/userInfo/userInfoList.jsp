@@ -16,7 +16,7 @@
 			<form id="headSearch">
 				<span>truename</span><input id="truename">
 				<span>age</span><input id="age">
-				<button type="button" onclick="search()">search</button>
+				<button type="button" onclick="search('UserInfo')">search</button>
 			</form>
 			<hr>
 			<table class="table table-bordered">

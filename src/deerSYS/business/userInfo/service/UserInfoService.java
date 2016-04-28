@@ -39,11 +39,13 @@ public class UserInfoService {
 	@RequestMapping("/toUserInfoList")
 	public ModelAndView toUserInfoList(String searchData){
 		HashMap searchMap = new HashMap();
-		JSONObject messageData = JSONObject.fromObject(searchData);
-		Iterator<String> keys = messageData.keys();
-		while(keys.hasNext()){
-			String key  = keys.next();
-			searchMap.put(key, messageData.get(key));
+		if(searchData != null && searchData != ""){
+			JSONObject messageData = JSONObject.fromObject(searchData);
+			Iterator<String> keys = messageData.keys();
+			while(keys.hasNext()){
+				String key  = keys.next();
+				searchMap.put(key, messageData.get(key));
+			}
 		}
 		ModelAndView mav = new ModelAndView("deerSYS/page/userInfo/userInfoList");
 		List userInfoList = userInfoDao.userInfoList(searchMap);
