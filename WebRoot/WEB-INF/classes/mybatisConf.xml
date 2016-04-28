@@ -19,5 +19,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mappers>
         <mapper resource="springTest/dao/mapper/TestDaoMapper.xml"/>
         <mapper resource="deerSYS/system/dao/mapper/SystemDaoMapper.xml"/>
+        <mapper resource="deerSYS/business/userInfo/dao/mapper/UserInfoDaoMapper.xml"/>
     </mappers>
 </configuration>

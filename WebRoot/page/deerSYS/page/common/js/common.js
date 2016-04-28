@@ -21,7 +21,7 @@ function save(tableName){
 	$("#"+tableName).find("input").each(function(index,item){
 		var key = $(item).attr("id");
 		var value = $(item).val();
-		data += ""+key+":"+value+",";
+		data += ""+key+":'"+value+"',";
 	});
 	data +="}";
 	ajax("post",basePath+"deerSYS/save.do",
@@ -29,6 +29,7 @@ function save(tableName){
 			"tableName":tableName,
 			"data":data
 		},function(data){
-		
+			alert(data);
+			window.location = basePath+"deerSYS/toUserInfoList.do";
 	});
 }

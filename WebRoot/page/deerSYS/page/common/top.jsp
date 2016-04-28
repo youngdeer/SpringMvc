@@ -27,7 +27,10 @@
 							<a href="<%=basePath%>deerSYS/toIndex.do">Home</a>
 						</li>
 						<li>
-							<a href="<%=basePath%>deerSYS/toUserInfoEdit.do">UserInfo</a>
+							<a href="<%=basePath%>deerSYS/toUserInfoEdit.do">UserInfoEdit</a>
+						</li>
+						<li>
+							<a href="<%=basePath%>deerSYS/toUserInfoList.do">UserInfoList</a>
 						</li>
 						<li>
 							<a href="<%=basePath%>deerSYS/userLogout.do">Logout</a>
