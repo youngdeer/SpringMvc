@@ -49,3 +49,13 @@ function search(tableName){
 	data +="}";
 	window.location = basePath+"deerSYS/to"+tableName+"List.do?searchData="+data;
 }
+
+
+/**
+ * 下一页封装
+ * form id必须为headSearch
+ */
+function next(tableName){
+	$("#pageNo").val(Number($("#pageNo").val())+1);
+	search(tableName);
+}

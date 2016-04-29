@@ -17,5 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="age!='' and age!=null">
 				and age = #{age}
 			</if>
+			order by truename
+			limit #{pageStart},#{pageSize}
 	</select>
 </mapper>

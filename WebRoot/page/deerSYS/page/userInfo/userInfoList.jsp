@@ -16,6 +16,8 @@
 			<form id="headSearch">
 				<span>truename</span><input id="truename">
 				<span>age</span><input id="age">
+				<input id="pageNo" type="hidden" value="${currentPageNo}">
+				<input id="pageSize" type="hidden" value="3">
 				<button type="button" onclick="search('UserInfo')">search</button>
 			</form>
 			<hr>
@@ -65,6 +67,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<button type="button" onclick="next('UserInfo')">next</button>
 			<hr>
 			<%@include file="/page/deerSYS/page/common/footer.jsp"%>
 		</div>
