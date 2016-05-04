@@ -56,5 +56,6 @@
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/ezmorph-1.0.jar"/>
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/commons-beanutils.jar"/>
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
