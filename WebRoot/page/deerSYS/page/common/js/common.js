@@ -59,3 +59,12 @@ function next(tableName){
 	$("#pageNo").val(Number($("#pageNo").val())+1);
 	search(tableName);
 }
+
+/**
+ * 上一页封装
+ * form id必须为headSearch
+ */
+function previous(tableName){
+	$("#pageNo").val(Number($("#pageNo").val())-1);
+	search(tableName);
+}

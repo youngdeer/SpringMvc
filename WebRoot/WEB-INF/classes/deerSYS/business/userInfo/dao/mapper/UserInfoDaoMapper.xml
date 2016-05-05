@@ -20,4 +20,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			order by truename
 			limit #{pageStart},#{pageSize}
 	</select>
+	
+	<select id="countUserInfoList" parameterType="HashMap" resultType="HashMap">
+		select count(*) total from userinfo
+			where 1=1
+			<if test="userinfoId!='' and userinfoId!=null">
+				and userinfoId = #{userinfoId}
+			</if>
+			<if test="truename!='' and truename!=null">
+				and truename = #{truename}
+			</if>
+			<if test="age!='' and age!=null">
+				and age = #{age}
+			</if>
+	</select>
 </mapper>

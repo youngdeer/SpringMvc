@@ -10,4 +10,8 @@ public class UserInfoDao extends SqlSessionDaoSupport{
 	public List<HashMap> userInfoList(HashMap searchMap){
 		return this.getSqlSession().selectList("deerSYS.business.userInfo.dao.mapper.UserInfoDaoMapper.userInfoList", searchMap);
 	}
+	
+	public HashMap countUserInfoList(HashMap searchMap){
+		return this.getSqlSession().selectOne("deerSYS.business.userInfo.dao.mapper.UserInfoDaoMapper.countUserInfoList", searchMap);
+	}
 }

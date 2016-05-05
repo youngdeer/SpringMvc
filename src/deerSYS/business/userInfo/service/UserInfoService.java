@@ -40,6 +40,7 @@ public class UserInfoService {
 	public ModelAndView toUserInfoList(String searchData){
 		ModelAndView mav = new ModelAndView("deerSYS/page/userInfo/userInfoList");
 		HashMap searchMap = new HashMap();
+		int pageSize = 3;
 		if(searchData != null && searchData != ""){
 			JSONObject messageData = JSONObject.fromObject(searchData);
 			Iterator<String> keys = messageData.keys();
@@ -48,17 +49,20 @@ public class UserInfoService {
 				searchMap.put(key, messageData.get(key));
 			}
 			int pageNo = Integer.parseInt(searchMap.get("pageNo").toString());
-			int pageSize = Integer.parseInt(searchMap.get("pageSize").toString());
+			pageSize = Integer.parseInt(searchMap.get("pageSize").toString());
 			int pageStart = (pageNo-1)*pageSize;
 			searchMap.put("pageStart",pageStart);
 			searchMap.put("pageSize",pageSize);
 			mav.addObject("currentPageNo", pageNo);
 		}else{
 			searchMap.put("pageStart",0);
-			searchMap.put("pageSize",3);
+			searchMap.put("pageSize",pageSize);
 			mav.addObject("currentPageNo", 1);
 		}
 		List userInfoList = userInfoDao.userInfoList(searchMap);
+		HashMap TotalMap = userInfoDao.countUserInfoList(searchMap);
+		int totalPageNo = Integer.parseInt(TotalMap.get("total").toString())/pageSize + 1;
+		mav.addObject("totalPageNo", totalPageNo);
 		mav.addObject("userInfoList", userInfoList);
         return mav;  
 	}

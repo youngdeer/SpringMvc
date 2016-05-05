@@ -67,7 +67,8 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<button type="button" onclick="next('UserInfo')">next</button>
+			<c:if test="${currentPageNo > 1}"><button type="button" onclick="previous('UserInfo')">previous</button></c:if>
+			<c:if test="${currentPageNo < totalPageNo}"><button type="button" onclick="next('UserInfo')">next</button></c:if>		
 			<hr>
 			<%@include file="/page/deerSYS/page/common/footer.jsp"%>
 		</div>
