@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="resource"/>
 	<classpathentry kind="src" path="properties"/>
+	<classpathentry kind="src" path="workflow"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
 	<classpathentry kind="lib" path="E:/ly_personal/jar包/lib/aopalliance-1.0.jar"/>
@@ -19,7 +20,6 @@
 	<classpathentry kind="lib" path="E:/ly_personal/jar包/lib/commons-pool-1.3.jar"/>
 	<classpathentry kind="lib" path="E:/ly_personal/jar包/lib/json_simple-1.1.jar"/>
 	<classpathentry kind="lib" path="E:/ly_personal/jar包/lib/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="E:/ly_personal/jar包/lib/mysql-connector-java-5.1.7-bin.jar"/>
 	<classpathentry kind="lib" path="E:/ly_personal/jar包/lib/org.aspectj.matcher.jar"/>
 	<classpathentry kind="lib" path="E:/ly_personal/xstream-1.4.7.jar"/>
 	<classpathentry kind="lib" path="E:/ly_personal/微信相关文档/wxpay-sdk-master/lib/fluent-hc-4.3.1.jar"/>
@@ -52,10 +52,14 @@
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/spring-webmvc-3.2.3.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/spring-webmvc-portlet-3.2.3.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/json-lib-2.3-jdk15.jar" sourcepath="C:/Users/caocy/Downloads/json-lib-2.2.3-jdk15-sources.jar"/>
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/ezmorph-1.0.jar"/>
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/commons-beanutils.jar"/>
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/json-lib-2.3-jdk15.jar" sourcepath="C:/Users/caocy/Downloads/json-lib-2.2.3-jdk15-sources.jar"/>
+	<classpathentry kind="lib" path="/platform31/WEB-INF/lib/mysql-connector-java-5.1.6-bin.jar"/>
+	<classpathentry kind="lib" path="E:/ly_personal/osworkflow-2.8.0.jar"/>
+	<classpathentry kind="lib" path="E:/ly_personal/osworkflow-2.8.0/lib/core/oscore-2.2.5.jar"/>
+	<classpathentry kind="lib" path="E:/ly_personal/osworkflow-2.8.0/lib/core/propertyset-1.4.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
