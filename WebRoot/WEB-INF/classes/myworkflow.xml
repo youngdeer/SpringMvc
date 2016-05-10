@@ -5,6 +5,13 @@
 <workflow>  
     <initial-actions>  
         <action id="100" name="Start Workflow">  
+        	<validators>
+        		<validator type="class">
+        			<arg name="class.name">
+        				osworkflow.service.ParamValidator
+        			</arg>
+        		</validator>
+        	</validators>
             <results>  
                 <unconditional-result old-status="Finished"  
                     status="Queued" step="1" />  

@@ -1,4 +1,4 @@
-package springTest.test;
+package osworkflow.test;
 
 import java.util.Collection;
 import java.util.HashMap;
