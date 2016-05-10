@@ -1,5 +1,6 @@
 package springTest.test;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 import com.opensymphony.workflow.InvalidActionException;
@@ -9,6 +10,7 @@ import com.opensymphony.workflow.InvalidRoleException;
 import com.opensymphony.workflow.Workflow;
 import com.opensymphony.workflow.WorkflowException;
 import com.opensymphony.workflow.basic.BasicWorkflow;
+import com.opensymphony.workflow.spi.Step;
 
 public class myworkflowTest {
 
@@ -25,7 +27,49 @@ public class myworkflowTest {
         inputs.put("docTitle", docTitle);  
         workflowId = wf.initialize("mytest", 100, inputs);  
           
+        Collection currentSteps = wf.getCurrentSteps(workflowId);
+        System.out.println("size: "+currentSteps.size());
+        
+        Step currentStep = (Step) currentSteps.iterator().next();
+        System.out.println("stepId: "+currentStep.getStepId());
+        System.out.println("ststus: "+currentStep.getStatus());
+        
+        int[] availableActions = wf.getAvailableActions(workflowId, inputs);
+        System.out.println("availableActions length: "+availableActions.length);
+        
+        System.out.println("availableAction: "+availableActions[0]);
+        
+        System.out.println("after doAction---------------------------------");
         //执行第1步动作  
         wf.doAction(workflowId, 1, inputs);  
+        
+        Collection nextCurrentSteps = wf.getCurrentSteps(workflowId);
+        System.out.println("size: "+nextCurrentSteps.size());
+        
+        Step nextCurrentStep = (Step) nextCurrentSteps.iterator().next();
+        System.out.println("stepId: "+nextCurrentStep.getStepId());
+        System.out.println("ststus: "+nextCurrentStep.getStatus());
+        
+        int[] nextAvailableActions = wf.getAvailableActions(workflowId, inputs);
+        System.out.println("availableActions length: "+nextAvailableActions.length);
+        
+        System.out.println("availableAction: "+nextAvailableActions[0]);
+        
+        System.out.println("after doAction---------------------------------");
+        
+      //执行第2步动作  
+        wf.doAction(workflowId, 2, inputs);
+        
+        Collection nextCurrentSteps1 = wf.getCurrentSteps(workflowId);
+        System.out.println("size: "+nextCurrentSteps1.size());
+        
+        Step nextCurrentStep1 = (Step) nextCurrentSteps1.iterator().next();
+        System.out.println("stepId: "+nextCurrentStep1.getStepId());
+        System.out.println("ststus: "+nextCurrentStep1.getStatus());
+        
+        int[] nextAvailableActions1 = wf.getAvailableActions(workflowId, inputs);
+        System.out.println("availableActions length: "+nextAvailableActions1.length);
+        
+        System.out.println("availableAction: "+nextAvailableActions1[0]);
 	}
 }
