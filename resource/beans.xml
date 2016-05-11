@@ -87,6 +87,35 @@
        		<aop:advisor advice-ref="tx" pointcut-ref="pointCut"/>
        </aop:config>
        
+		<!--  osworkflow配置     -->
+       <bean id="workflowStore" class="osworkflow.service.SpringJDBCWorkflowStore">  
+	        <property name="dataSource" ref="datasource"></property>  
+	        <property name="entrySequence">  
+	            <value>select count(*) + 1 from os_wfentry</value>  
+	        </property>  
+	        <property name="stepSequence">  
+	            <value>select sum(c1) + 1 from (select 1 as tb,  count(id)  as c1 from os_currentstep union select 2 as tb, count(id) as c1 from os_historystep) as TabelaFinal</value>  
+	        </property>  
+	    </bean>  
+          
+    	<bean id="workflowTypeResolver" class="com.opensymphony.workflow.util.SpringTypeResolver"/>
+    	
+    	<bean id="workflowFactory" class="com.opensymphony.workflow.spi.hibernate.SpringWorkflowFactory" init-method="init">  
+	        <property name="resource"><value>workflows.xml</value></property>  
+	        <property name="reload"><value>false</value></property>  
+	    </bean>  
+	      
+	    <bean id="osworkflowConfiguration" class="com.opensymphony.workflow.config.SpringConfiguration">  
+	        <property name="store"><ref local="workflowStore"/></property>  
+	        <property name="factory"><ref local="workflowFactory"/></property>          
+	    </bean>
+	    
+	    <bean id="workflowTarget" class="com.opensymphony.workflow.basic.BasicWorkflow">  
+	        <property name="configuration"><ref local="osworkflowConfiguration"/></property>    
+	        <constructor-arg>  
+	            <value>testUser</value>  
+	        </constructor-arg>  
+	    </bean>
       
        
 <!--       <bean id="resourceBean" class="springTest.beans.ResourceBean" init-method="init" destroy-method="destroy">-->

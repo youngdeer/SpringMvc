@@ -3,6 +3,11 @@ package osworkflow.test;
 import java.util.Collection;
 import java.util.HashMap;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import osworkflow.service.OsWorkflowUtil;
+
 import com.opensymphony.workflow.InvalidActionException;
 import com.opensymphony.workflow.InvalidEntryStateException;
 import com.opensymphony.workflow.InvalidInputException;
@@ -22,10 +27,16 @@ public class myworkflowTest {
         long workflowId = 1;  
         HashMap inputs = new HashMap();  
   
-        Workflow wf = new BasicWorkflow(caller);  
+//        传统配置
+//        Workflow wf = new BasicWorkflow(caller);
+        
+//        spring方式
+        Workflow wf = OsWorkflowUtil.getWorkflow();
+        
         inputs.put("params1", params1);  
         inputs.put("docTitle", docTitle);  
         workflowId = wf.initialize("mytest", 100, inputs);  
+        
           
         Collection currentSteps = wf.getCurrentSteps(workflowId);
         System.out.println("size: "+currentSteps.size());
