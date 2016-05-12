@@ -36,6 +36,9 @@
 							<a href="<%=basePath%>deerSYS/SimpleApply/toSimpleApply.do">SimpleApply</a>
 						</li>
 						<li>
+							<a href="<%=basePath%>deerSYS/SimpleApply/toSimpleApplyList.do">SimpleApplyList</a>
+						</li>
+						<li>
 							<a href="<%=basePath%>deerSYS/userLogout.do">Logout</a>
 						</li>
 					</c:if>

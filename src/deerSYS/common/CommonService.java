@@ -51,4 +51,23 @@ public class CommonService {
 		commonDao.save(tableName, tableContent);
 		return result;
 	}
+	
+	/**
+	 * 公用更新
+	 * deer
+	 */
+	@RequestMapping("/update")
+	@ResponseBody
+	public boolean update(@RequestParam("tableName")String tableName,@RequestParam("data")String data){
+		boolean result = true;
+		HashMap tableContent = new HashMap();
+		JSONObject messageData = JSONObject.fromObject(data);
+		Iterator<String> keys = messageData.keys();
+		while(keys.hasNext()){
+			String key  = keys.next();
+			tableContent.put(key, messageData.get(key));
+		}
+		commonDao.update(tableName, tableContent);
+		return result;
+	}
 }

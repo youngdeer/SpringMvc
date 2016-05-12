@@ -37,4 +37,24 @@ public class CommonDao extends JdbcTemplate{
 		System.out.println(sql);
 		this.update(sql.toString());
 	}
+	
+	
+	public void update(String tableName,HashMap tableContent){
+		StringBuffer sql = new StringBuffer("update "+tableName+" set ");
+		Iterator iter1 = tableContent.entrySet().iterator();
+		while(iter1.hasNext()){
+			Entry entry = (Entry) iter1.next();
+			String key = (String) entry.getKey();
+			Object value = (Object) entry.getValue();
+			if(iter1.hasNext()){
+				sql.append(""+key+"='"+value+"',");
+			}else{
+				sql.append(""+key+"='"+value+"'");
+			}
+		}
+		String primaryKey = (String) tableContent.get(tableName+"Id");
+		sql.append(" where "+tableName+"Id='"+primaryKey+"'");
+		System.out.println(sql);
+		this.update(sql.toString());
+	}
 }

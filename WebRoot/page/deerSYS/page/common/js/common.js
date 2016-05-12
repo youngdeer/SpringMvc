@@ -34,6 +34,28 @@ function save(tableName){
 	});
 }
 
+/**
+ * update单表封装
+ * param tableName
+ */
+function update(tableName){
+	var data = "{";
+	$("#"+tableName).find("input").each(function(index,item){
+		var key = $(item).attr("id");
+		var value = $(item).val();
+		data += ""+key+":'"+value+"',";
+	});
+	data +="}";
+	ajax("post",basePath+"deerSYS/update.do",
+		{
+			"tableName":tableName,
+			"data":data
+		},function(data){
+			alert(data);
+			window.location = basePath+"deerSYS/to"+tableName+"List.do";
+	});
+}
+
 
 /**
  * 列表条件搜索封装

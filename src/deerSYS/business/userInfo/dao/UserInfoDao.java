@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+@SuppressWarnings("unchecked")
 public class UserInfoDao extends SqlSessionDaoSupport{
 
 	public List<HashMap> userInfoList(HashMap searchMap){
