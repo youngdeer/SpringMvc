@@ -13,7 +13,7 @@
 	<body>
 		<%@include file="/page/deerSYS/page/common/top.jsp"%>
 		<div id="container" class="container">
-			<form id="simpleApply" method="post">
+			<form id="SimpleApply" method="post">
 				<input type="hidden" id="workflowId"/>
 				<input type="hidden" id="workflowStatus"/>
 				<fieldset>

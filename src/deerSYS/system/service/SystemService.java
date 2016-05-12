@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import deerSYS.common.CommonService;
+import deerSYS.common.CommonControll;
 import deerSYS.system.dao.SystemDao;
 
 @Controller
@@ -25,7 +25,7 @@ public class SystemService {
 	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 	SystemDao systemDao = (SystemDao) context.getBean("systemDao");
 	
-	CommonService commonService = new CommonService();
+	CommonControll commonService = new CommonControll();
 	
 	/**
 	 * index页面

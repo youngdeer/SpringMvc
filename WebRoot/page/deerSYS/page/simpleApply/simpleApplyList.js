@@ -3,7 +3,7 @@
  * deer
  */
 function doAction(simpleApplyId){
-	ajax("post",basePath+"deerSYS/SimpleApply/doAction.do",
+	ajax("post",basePath+"deerSYS/doAction.do",
 		{
 			"simpleApplyId":simpleApplyId
 		},function(data){

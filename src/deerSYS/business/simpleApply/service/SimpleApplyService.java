@@ -25,7 +25,7 @@ import deerSYS.business.simpleApply.dao.SimpleApplyDao;
 import deerSYS.common.CommonDao;
 
 @Controller
-@RequestMapping("/deerSYS/SimpleApply")
+@RequestMapping("/deerSYS")
 @SuppressWarnings("unchecked")
 public class SimpleApplyService {
 	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");

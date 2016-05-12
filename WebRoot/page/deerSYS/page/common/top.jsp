@@ -33,10 +33,10 @@
 							<a href="<%=basePath%>deerSYS/toUserInfoList.do">UserInfoList</a>
 						</li>
 						<li>
-							<a href="<%=basePath%>deerSYS/SimpleApply/toSimpleApply.do">SimpleApply</a>
+							<a href="<%=basePath%>deerSYS/toSimpleApply.do">SimpleApply</a>
 						</li>
 						<li>
-							<a href="<%=basePath%>deerSYS/SimpleApply/toSimpleApplyList.do">SimpleApplyList</a>
+							<a href="<%=basePath%>deerSYS/toSimpleApplyList.do">SimpleApplyList</a>
 						</li>
 						<li>
 							<a href="<%=basePath%>deerSYS/userLogout.do">Logout</a>

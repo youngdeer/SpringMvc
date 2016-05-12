@@ -15,9 +15,9 @@ public class mybatisTest {
 		TestDaoMybatis obj = (TestDaoMybatis) context.getBean("testDaoMybatis");
 		System.out.println(obj.list());
 		HashMap map = new HashMap();
-		map.put("id", 5);
-		map.put("msg", "eee");
-		obj.insert(map);
-//		obj.deleteById("4");
+//		map.put("id", 5);
+//		map.put("msg", "eee");
+//		obj.insert(map);
+		obj.deleteById("4");
 	}
 }

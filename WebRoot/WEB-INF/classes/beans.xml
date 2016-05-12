@@ -41,10 +41,6 @@
        		<property name="dataSource" ref="datasource"></property>
        </bean>
        
-       <bean id="commonDao" class="deerSYS.common.CommonDao">
-       		<property name="dataSource" ref="datasource"></property>
-       </bean>
-       
        <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
        		<property name="configLocation" value="classpath:mybatisConf.xml"></property>
        		<property name="dataSource" ref="datasource"></property>
@@ -57,9 +53,7 @@
        
        <tx:advice id="tx" transaction-manager="transactionManager">
        		<tx:attributes>
-       			<tx:method name="delete*" propagation="REQUIRED"/>
-       			<tx:method name="insert*" propagation="REQUIRED"/>
-       			<tx:method name="update*" propagation="REQUIRED"/>
+       			<tx:method name="*" propagation="REQUIRED"/>
        			<tx:method name="find*" read-only="true"/>
        			<tx:method name="get*" read-only="true"/>
        			<tx:method name="select*" read-only="true"/>
@@ -82,6 +76,10 @@
        		<property name="sqlSessionFactory" ref="sessionFactory"></property>
        </bean>
        
+       <bean id="commonDao" class="deerSYS.common.CommonDao">
+       		<property name="dataSource" ref="datasource"></property>
+       </bean>
+       
        <!-- springTest.dao.imp.TestDaoMybatis 
        没有实现接口，要使用AOP必须强制使用CGLIB动态代理。若实现接口则默认使用JDK动态代理，也可以强制使用CGLIB动态代理 -->
        <aop:aspectj-autoproxy proxy-target-class="true"/>
@@ -89,6 +87,10 @@
        <aop:config>
        		<aop:pointcut expression="execution(* springTest.dao..*.*(..))" id="pointCut"/>
        		<aop:advisor advice-ref="tx" pointcut-ref="pointCut"/>
+       </aop:config>
+       
+       <aop:config>
+       		<aop:advisor advice-ref="tx" pointcut="execution(* deerSYS.common..*.*(..))"/>
        </aop:config>
        
 		<!--  osworkflow配置     -->
@@ -112,6 +114,30 @@
 	    <bean id="osworkflowConfiguration" class="com.opensymphony.workflow.config.SpringConfiguration">  
 	        <property name="store"><ref local="workflowStore"/></property>  
 	        <property name="factory"><ref local="workflowFactory"/></property>          
+	    </bean>
+	    
+	    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">  
+	        <property name="transactionManager"><ref local="transactionManager"/></property>  
+	        <property name="transactionAttributes">  
+	            <props>  
+	                <prop key="*">PROPAGATION_REQUIRED,-Exception</prop>  
+	            </props>  
+	        </property>  
+	    </bean>  
+	  
+	    <bean id="workflow" class="org.springframework.aop.framework.ProxyFactoryBean">  
+	        <property name="singleton">  
+	            <value>false</value>  
+	        </property>  
+	        <property name="proxyInterfaces">  
+	            <value>com.opensymphony.workflow.Workflow</value>  
+	        </property>  
+	        <property name="interceptorNames">  
+	            <list>  
+	                <value>transactionInterceptor</value>  
+	            </list>  
+	        </property>  
+	        <property name="target"  ref="workflowTarget"></property>  
 	    </bean>
 	    
 	    <bean id="workflowTarget" class="com.opensymphony.workflow.basic.BasicWorkflow">  
