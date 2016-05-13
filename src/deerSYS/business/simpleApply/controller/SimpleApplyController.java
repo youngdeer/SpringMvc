@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,13 +17,14 @@ import com.opensymphony.workflow.InvalidRoleException;
 import com.opensymphony.workflow.WorkflowException;
 
 import deerSYS.business.simpleApply.service.imp.SimpleApplyService;
+import deerSYS.common.ApplicationContextUtil;
 
 @Controller
 @RequestMapping("/deerSYS")
 @SuppressWarnings("unchecked")
 public class SimpleApplyController {
 
-	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+	ApplicationContext context = ApplicationContextUtil.getContext();
 	SimpleApplyService simpleApplyService = (SimpleApplyService) context.getBean("simpleApplyService");
 
 	/**

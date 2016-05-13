@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import deerSYS.common.ApplicationContextUtil;
 import deerSYS.common.CommonUtil;
 import deerSYS.system.dao.SystemDao;
 
@@ -22,7 +22,7 @@ import deerSYS.system.dao.SystemDao;
 @SuppressWarnings("unchecked")
 public class SystemService {
 	
-	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+	ApplicationContext context = ApplicationContextUtil.getContext();
 	SystemDao systemDao = (SystemDao) context.getBean("systemDao");
 	
 	CommonUtil commonUtil = new CommonUtil();

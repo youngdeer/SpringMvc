@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import net.sf.json.JSONObject;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +20,7 @@ import deerSYS.common.service.ICommonService;
 @RequestMapping("/deerSYS")
 @SuppressWarnings("unchecked")
 public class CommonUtil {
-	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+	ApplicationContext context = ApplicationContextUtil.getContext();
 	
 	ICommonService commonService = (ICommonService) context.getBean("commonService");
 	

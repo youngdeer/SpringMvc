@@ -77,6 +77,9 @@
        		<property name="wf" ref="workflowTarget"></property>
        </bean>
        
+       <!--  Util   实例    -->
+       <bean id="applicationContextUtil" class="deerSYS.common.ApplicationContextUtil"></bean>
+       
        <!-- 事务控制 -->
        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
        		<property name="dataSource" ref="datasource"></property>

@@ -7,18 +7,18 @@ import java.util.List;
 import net.sf.json.JSONObject;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import deerSYS.business.userInfo.dao.UserInfoDao;
+import deerSYS.common.ApplicationContextUtil;
 
 @Controller
 @RequestMapping("/deerSYS")
 @SuppressWarnings("unchecked")
 public class UserInfoService {
-	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+	ApplicationContext context = ApplicationContextUtil.getContext();
 	UserInfoDao userInfoDao = (UserInfoDao) context.getBean("userInfoDao");
 
 	/**
