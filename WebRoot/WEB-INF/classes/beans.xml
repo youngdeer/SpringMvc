@@ -86,7 +86,7 @@
        </tx:advice>
        
        <!-- springTest.dao.imp.TestDaoMybatis 
-       没有实现接口，要使用AOP必须强制使用CGLIB动态代理。若实现接口则默认使用JDK动态代理，也可以强制使用CGLIB动态代理 -->
+       		没有实现接口，要使用AOP必须强制使用CGLIB动态代理。若实现接口则默认使用JDK动态代理，也可以强制使用CGLIB动态代理 -->
        <aop:aspectj-autoproxy proxy-target-class="true"/>
        
        <aop:config>
@@ -98,7 +98,7 @@
        		<aop:advisor advice-ref="tx" pointcut="execution(* deerSYS.common..*.*(..))"/>
        </aop:config>
        
-		<!--  osworkflow配置     -->
+	   <!--  osworkflow配置     -->
        <bean id="workflowStore" class="osworkflow.service.SpringJDBCWorkflowStore">  
 	        <property name="dataSource" ref="datasource"></property>  
 	        <property name="entrySequence">  

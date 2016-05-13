@@ -6,6 +6,8 @@ import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import net.sf.json.JSONObject;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -14,14 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import deerSYS.common.service.ICommonService;
-import deerSYS.common.service.imp.CommonService;
-
-import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/deerSYS")
 @SuppressWarnings("unchecked")
-public class CommonControll {
+public class CommonUtil {
 	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 	CommonDao commonDao = (CommonDao) context.getBean("commonDao");
 	
@@ -39,40 +38,44 @@ public class CommonControll {
 	}
 	
 	/**
-	 * 公用保存
+	 * 单表公用保存
 	 * deer
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
 	public boolean save(@RequestParam("tableName")String tableName,@RequestParam("data")String data){
 		boolean result = true;
-		HashMap tableContent = new HashMap();
-		JSONObject messageData = JSONObject.fromObject(data);
-		Iterator<String> keys = messageData.keys();
-		while(keys.hasNext()){
-			String key  = keys.next();
-			tableContent.put(key, messageData.get(key));
-		}
+		HashMap tableContent = parseData(data);
 		commonService.save(tableName, tableContent);
 		return result;
 	}
 	
 	/**
-	 * 公用更新
+	 * 单表公用更新
 	 * deer
 	 */
 	@RequestMapping("/update")
 	@ResponseBody
 	public boolean update(@RequestParam("tableName")String tableName,@RequestParam("data")String data){
 		boolean result = true;
-		HashMap tableContent = new HashMap();
+		HashMap tableContent = parseData(data);
+		commonService.update(tableName, tableContent);
+		return result;
+	}
+	
+	/**
+	 * 解析单表数据
+	 * @param data
+	 * @return
+	 */
+	public HashMap parseData(String data){
+		HashMap map = new HashMap();
 		JSONObject messageData = JSONObject.fromObject(data);
 		Iterator<String> keys = messageData.keys();
 		while(keys.hasNext()){
 			String key  = keys.next();
-			tableContent.put(key, messageData.get(key));
+			map.put(key, messageData.get(key));
 		}
-		commonDao.update(tableName, tableContent);
-		return result;
+		return map;
 	}
 }

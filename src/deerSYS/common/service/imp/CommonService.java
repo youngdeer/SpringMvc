@@ -24,4 +24,9 @@ public class CommonService implements ICommonService{
 //		测试事务
 //		int j = 1/0;
 	}
+
+	@Override
+	public void update(String tableName, HashMap tableContent) {
+		commonDao.update(tableName, tableContent);
+	}
 }

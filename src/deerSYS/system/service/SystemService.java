@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import deerSYS.common.CommonControll;
+import deerSYS.common.CommonUtil;
 import deerSYS.system.dao.SystemDao;
 
 @Controller
@@ -25,7 +25,7 @@ public class SystemService {
 	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 	SystemDao systemDao = (SystemDao) context.getBean("systemDao");
 	
-	CommonControll commonService = new CommonControll();
+	CommonUtil commonUtil = new CommonUtil();
 	
 	/**
 	 * index页面
@@ -119,7 +119,7 @@ public class SystemService {
 			HttpServletRequest request, HttpServletResponse response){
 		HashMap outputData = new HashMap();
 		if(isMatch(username,password)){
-			commonService.addSession(request, "username", username);
+			commonUtil.addSession(request, "username", username);
 //			System.out.println(request.getSession().getAttribute("username"));
 			outputData.put("result", 1);
 		}else{
@@ -135,7 +135,7 @@ public class SystemService {
 	@RequestMapping("/userLogout")
 	public ModelAndView userLogout(HttpServletRequest request, HttpServletResponse response){
 		ModelAndView mav = new ModelAndView("deerSYS/page/index/index");  
-		commonService.removeSession(request, "username");
+		commonUtil.removeSession(request, "username");
         return mav; 
 	}
 }

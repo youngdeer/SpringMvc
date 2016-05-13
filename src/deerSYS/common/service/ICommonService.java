@@ -6,4 +6,6 @@ import java.util.HashMap;
 public interface ICommonService {
 
 	public void save(String tableName,HashMap tableContent);
+	
+	public void update(String tableName,HashMap tableContent);
 }
