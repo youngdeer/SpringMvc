@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import deerSYS.common.service.ICommonService;
 import deerSYS.common.service.imp.CommonService;
 
 import net.sf.json.JSONObject;
@@ -24,7 +25,7 @@ public class CommonControll {
 	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 	CommonDao commonDao = (CommonDao) context.getBean("commonDao");
 	
-	CommonService commonService = new CommonService();
+	ICommonService commonService = (ICommonService) context.getBean("commonService");
 	
 	public static void addSession(HttpServletRequest request,String key,Object value){
 		HttpSession session = request.getSession();

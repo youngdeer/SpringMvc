@@ -15,6 +15,7 @@ public class TestDaoMybatis extends SqlSessionDaoSupport{
 	
 	public int deleteById(String id){
 		int i = this.getSqlSession().delete("springTest.dao.mapper.deleteById", id);
+		int j = 1/0;
 		return i;
 	}
 	

@@ -2,20 +2,26 @@ package deerSYS.common.service.imp;
 
 import java.util.HashMap;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import deerSYS.common.CommonDao;
 import deerSYS.common.service.ICommonService;
 
 @SuppressWarnings("unchecked")
 public class CommonService implements ICommonService{
 	
-	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-	CommonDao commonDao = (CommonDao) context.getBean("commonDao");
+	private CommonDao commonDao;
 	
+	public CommonDao getCommonDao() {
+		return commonDao;
+	}
+
+	public void setCommonDao(CommonDao commonDao) {
+		this.commonDao = commonDao;
+	}
+
+	@Override
 	public void save(String tableName,HashMap tableContent){
 		commonDao.save(tableName, tableContent);
+//		测试事务
 //		int j = 1/0;
 	}
 }

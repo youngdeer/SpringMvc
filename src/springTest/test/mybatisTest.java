@@ -18,6 +18,6 @@ public class mybatisTest {
 //		map.put("id", 5);
 //		map.put("msg", "eee");
 //		obj.insert(map);
-		obj.deleteById("4");
+		obj.deleteById("3");
 	}
 }

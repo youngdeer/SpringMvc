@@ -36,31 +36,17 @@
        <!-- import dataSource -->
        <import resource="classpath:dsContext.xml" />
        
-       
-       <bean id="testDao" class="springTest.dao.imp.TestDao">
-       		<property name="dataSource" ref="datasource"></property>
-       </bean>
-       
        <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
        		<property name="configLocation" value="classpath:mybatisConf.xml"></property>
        		<property name="dataSource" ref="datasource"></property>
        </bean>
        
-       <!-- 事务控制 -->
-       <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       <!-- DAO实例       -->
+       <bean id="testDao" class="springTest.dao.imp.TestDao">
        		<property name="dataSource" ref="datasource"></property>
        </bean>
        
-       <tx:advice id="tx" transaction-manager="transactionManager">
-       		<tx:attributes>
-       			<tx:method name="*" propagation="REQUIRED"/>
-       			<tx:method name="find*" read-only="true"/>
-       			<tx:method name="get*" read-only="true"/>
-       			<tx:method name="select*" read-only="true"/>
-       		</tx:attributes>
-       </tx:advice>
-       
-        <bean id="testDaoMybatis" class="springTest.dao.imp.TestDaoMybatis">
+       <bean id="testDaoMybatis" class="springTest.dao.imp.TestDaoMybatis">
        		<property name="sqlSessionFactory" ref="sessionFactory"></property>
        </bean>
        
@@ -79,6 +65,25 @@
        <bean id="commonDao" class="deerSYS.common.CommonDao">
        		<property name="dataSource" ref="datasource"></property>
        </bean>
+       
+       <!-- Service 实例       -->
+       <bean id="commonService" class="deerSYS.common.service.imp.CommonService">
+       		<property name="commonDao" ref="commonDao"></property>
+       </bean>
+       
+       <!-- 事务控制 -->
+       <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       		<property name="dataSource" ref="datasource"></property>
+       </bean>
+       
+       <tx:advice id="tx" transaction-manager="transactionManager">
+       		<tx:attributes>
+       			<tx:method name="*" propagation="REQUIRED"/>
+       			<tx:method name="find*" read-only="true"/>
+       			<tx:method name="get*" read-only="true"/>
+       			<tx:method name="select*" read-only="true"/>
+       		</tx:attributes>
+       </tx:advice>
        
        <!-- springTest.dao.imp.TestDaoMybatis 
        没有实现接口，要使用AOP必须强制使用CGLIB动态代理。若实现接口则默认使用JDK动态代理，也可以强制使用CGLIB动态代理 -->
