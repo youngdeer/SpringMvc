@@ -1,4 +1,4 @@
-package deerSYS.business.simpleApply.service;
+package deerSYS.business.simpleApply.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,28 +11,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import osworkflow.service.OsWorkflowUtil;
-
 import com.opensymphony.workflow.InvalidActionException;
 import com.opensymphony.workflow.InvalidEntryStateException;
 import com.opensymphony.workflow.InvalidInputException;
 import com.opensymphony.workflow.InvalidRoleException;
-import com.opensymphony.workflow.Workflow;
 import com.opensymphony.workflow.WorkflowException;
-import com.opensymphony.workflow.spi.Step;
 
-import deerSYS.business.simpleApply.dao.SimpleApplyDao;
-import deerSYS.common.CommonDao;
+import deerSYS.business.simpleApply.service.imp.SimpleApplyService;
 
 @Controller
 @RequestMapping("/deerSYS")
 @SuppressWarnings("unchecked")
-public class SimpleApplyService {
+public class SimpleApplyController {
+
 	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-	SimpleApplyDao simpleApplyDao = (SimpleApplyDao) context.getBean("simpleApplyDao");
-	CommonDao commonDao = (CommonDao) context.getBean("commonDao");
-	
-	Workflow wf = OsWorkflowUtil.getWorkflow();
+	SimpleApplyService simpleApplyService = (SimpleApplyService) context.getBean("simpleApplyService");
 
 	/**
 	 * simpleApply编辑页面
@@ -52,7 +45,7 @@ public class SimpleApplyService {
 	public ModelAndView toSimpleApplyList(){
 		ModelAndView mav = new ModelAndView("deerSYS/page/simpleApply/simpleApplyList");  
 		HashMap searchMap = new HashMap();
-		List simpleApplyList = simpleApplyDao.simpleApplyList(searchMap);
+		List simpleApplyList = simpleApplyService.simpleApplyList(searchMap);
 		mav.addObject("simpleApplyList", simpleApplyList);
         return mav;  
 	}
@@ -68,18 +61,21 @@ public class SimpleApplyService {
 	 */
 	@RequestMapping("/beforeSave")
 	@ResponseBody
-	public HashMap beforeSave() throws InvalidActionException, InvalidRoleException, InvalidInputException, InvalidEntryStateException, WorkflowException{
+	public HashMap beforeSave(){
 		HashMap outputData = new HashMap();
-		
-		HashMap inputs = new HashMap();
-		inputs.put("params1", "params1");  
-        inputs.put("docTitle", "docTitle"); 
-		
-		long workflowId = wf.initialize("mytest", 100, inputs); 
-		Step currentStep = (Step) wf.getCurrentSteps(workflowId).iterator().next();
-		String workflowStatus = currentStep.getStatus();
-		outputData.put("workflowId", workflowId);
-		outputData.put("workflowStatus", workflowStatus);
+		try {
+			outputData = simpleApplyService.beforeSave();
+		} catch (InvalidActionException e) {
+			e.printStackTrace();
+		} catch (InvalidRoleException e) {
+			e.printStackTrace();
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		} catch (InvalidEntryStateException e) {
+			e.printStackTrace();
+		} catch (WorkflowException e) {
+			e.printStackTrace();
+		}
 		return outputData;
 	}
 	
@@ -91,23 +87,15 @@ public class SimpleApplyService {
 	 */
 	@RequestMapping("/doAction")
 	@ResponseBody
-	public boolean doAction(@RequestParam("simpleApplyId")String simpleApplyId) throws InvalidInputException, WorkflowException{
+	public boolean doAction(@RequestParam("simpleApplyId")String simpleApplyId){
 		boolean result = true;
-		HashMap searchMap = new HashMap();
-		searchMap.put("simpleApplyId", simpleApplyId);
-		List simpleApplyList = simpleApplyDao.simpleApplyList(searchMap);
-		HashMap simpleApplyMap = (HashMap) simpleApplyList.get(0);
-		long workflowId = Integer.parseInt((String) simpleApplyMap.get("workflowId"));
-		
-		HashMap inputs = new HashMap();
-		inputs.put("params1", "params1");  
-        inputs.put("docTitle", "docTitle"); 
-		
-		wf.doAction(workflowId, 1, inputs);
-		Step currentStep = (Step) wf.getCurrentSteps(workflowId).iterator().next();
-		String workflowStatus = currentStep.getStatus();
-		simpleApplyMap.put("workflowStatus", workflowStatus);
-		commonDao.update("simpleApply", simpleApplyMap);
+		try {
+			simpleApplyService.doAction(simpleApplyId);
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		} catch (WorkflowException e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 }

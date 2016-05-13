@@ -22,7 +22,6 @@ import deerSYS.common.service.ICommonService;
 @SuppressWarnings("unchecked")
 public class CommonUtil {
 	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-	CommonDao commonDao = (CommonDao) context.getBean("commonDao");
 	
 	ICommonService commonService = (ICommonService) context.getBean("commonService");
 	
