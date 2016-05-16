@@ -3,8 +3,6 @@ package deerSYS.business.simpleApply.service.imp;
 import java.util.HashMap;
 import java.util.List;
 
-import osworkflow.service.OsWorkflowUtil;
-
 import com.opensymphony.workflow.InvalidActionException;
 import com.opensymphony.workflow.InvalidEntryStateException;
 import com.opensymphony.workflow.InvalidInputException;

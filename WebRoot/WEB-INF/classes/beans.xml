@@ -13,25 +13,25 @@
 				http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">  
     <!-- Root Context: defines shared resources visible to all other web components -->  
   
-       <bean id="hello" class="springTest.beans.Hello">
-       		<property name="name" value="Deer"></property>
-       </bean>
-       
-       <bean id="hello1" class="springTest.beans.Hello"></bean>
-       
-       <bean id="hello2" class="springTest.beans.Hello">
-       		<constructor-arg index="0" value="hasParam"></constructor-arg>
-       </bean>
-       
-       <bean id="hello3" class="springTest.factory.HelloStaticFactory" factory-method="newInstance">
-       		<constructor-arg index="0" value="staticFactory"></constructor-arg>
-       </bean>
-       
-       <bean id="helloInstanceFactory" class="springTest.factory.HelloInstanceFactory"></bean>
-       
-       <bean id="hello4" factory-bean="helloInstanceFactory" factory-method="newInstance">
-       		<constructor-arg index="0" value="instanceFactory"></constructor-arg>
-       </bean>
+<!--       <bean id="hello" class="springTest.beans.Hello">-->
+<!--       		<property name="name" value="Deer"></property>-->
+<!--       </bean>-->
+<!--       -->
+<!--       <bean id="hello1" class="springTest.beans.Hello"></bean>-->
+<!--       -->
+<!--       <bean id="hello2" class="springTest.beans.Hello">-->
+<!--       		<constructor-arg index="0" value="hasParam"></constructor-arg>-->
+<!--       </bean>-->
+<!--       -->
+<!--       <bean id="hello3" class="springTest.factory.HelloStaticFactory" factory-method="newInstance">-->
+<!--       		<constructor-arg index="0" value="staticFactory"></constructor-arg>-->
+<!--       </bean>-->
+<!--       -->
+<!--       <bean id="helloInstanceFactory" class="springTest.factory.HelloInstanceFactory"></bean>-->
+<!--       -->
+<!--       <bean id="hello4" factory-bean="helloInstanceFactory" factory-method="newInstance">-->
+<!--       		<constructor-arg index="0" value="instanceFactory"></constructor-arg>-->
+<!--       </bean>-->
        
        <!-- import dataSource -->
        <import resource="classpath:dsContext.xml" />
@@ -76,9 +76,6 @@
        		<property name="commonDao" ref="commonDao"></property>
        		<property name="wf" ref="workflowTarget"></property>
        </bean>
-       
-       <!--  Util   实例    -->
-       <bean id="applicationContextUtil" class="deerSYS.common.ApplicationContextUtil"></bean>
        
        <!-- 事务控制 -->
        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -128,6 +125,13 @@
 	        <property name="factory"><ref local="workflowFactory"/></property>          
 	    </bean>
 	    
+	    <bean id="workflowTarget" class="com.opensymphony.workflow.basic.BasicWorkflow">  
+	        <property name="configuration"><ref local="osworkflowConfiguration"/></property>    
+	        <constructor-arg>  
+	            <value>deer</value>  
+	        </constructor-arg>  
+	    </bean>
+	    
 <!--	    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">  -->
 <!--	        <property name="transactionManager"><ref local="transactionManager"/></property>  -->
 <!--	        <property name="transactionAttributes">  -->
@@ -151,15 +155,7 @@
 <!--	        </property>  -->
 <!--	        <property name="target"  ref="workflowTarget"></property>  -->
 <!--	    </bean>-->
-	    
-	    <bean id="workflowTarget" class="com.opensymphony.workflow.basic.BasicWorkflow">  
-	        <property name="configuration"><ref local="osworkflowConfiguration"/></property>    
-	        <constructor-arg>  
-	            <value>testUser</value>  
-	        </constructor-arg>  
-	    </bean>
-      
-       
+	   
 <!--       <bean id="resourceBean" class="springTest.beans.ResourceBean" init-method="init" destroy-method="destroy">-->
 <!--       		<property name="file" vlaue="E:/example/deer.txt"></property>-->
 <!--       </bean>-->

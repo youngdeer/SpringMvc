@@ -24,12 +24,23 @@ public class CommonUtil {
 	
 	ICommonService commonService = (ICommonService) context.getBean("commonService");
 	
+	/**
+	 * session写入
+	 * @param request
+	 * @param key
+	 * @param value
+	 */
 	public static void addSession(HttpServletRequest request,String key,Object value){
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(30*2);
 		session.setAttribute(key, value);
 	}
 	
+	/**
+	 * session清除
+	 * @param request
+	 * @param key
+	 */
 	public static void removeSession(HttpServletRequest request,String key){
 		HttpSession session = request.getSession();
 		session.removeAttribute(key);
