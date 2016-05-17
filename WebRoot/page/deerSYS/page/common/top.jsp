@@ -19,7 +19,7 @@
 							<a href="<%=basePath%>deerSYS/toRegist.do">Register</a>
 						</li>
 						<li>
-							<a href="/mobileReg">mobileReg</a>
+							<a href="<%=basePath%>deerSYS/toRole.do">Role</a>
 						</li>
 					</c:if>
 					<c:if test="${not empty username}">

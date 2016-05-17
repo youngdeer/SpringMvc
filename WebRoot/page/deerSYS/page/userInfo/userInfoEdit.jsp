@@ -64,7 +64,7 @@
 						</div>
 					</div>
 					<div class="form-actions">
-						<button type="button" class="btn btn-primary" onclick="save('UserInfo')">
+						<button type="button" class="btn btn-primary" onclick="save('UserInfo',true)">
 							save
 						</button>
 					</div>

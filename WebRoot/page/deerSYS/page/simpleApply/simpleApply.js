@@ -4,6 +4,6 @@ function beforeSave(){
 //		alert("workflowStatus: "+data.workflowStatus);
 		$("#workflowId").val(data.workflowId);
 		$("#workflowStatus").val(data.workflowStatus);
-		save("SimpleApply");
+		save("SimpleApply",true);
 	});
 }

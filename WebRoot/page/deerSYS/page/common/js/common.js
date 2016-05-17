@@ -16,7 +16,7 @@ function ajax(type,url,data,callback){
  * save单表封装
  * param tableName
  */
-function save(tableName){
+function save(tableName,redirect){
 	var data = "{";
 	$("#"+tableName).find("input").each(function(index,item){
 		var key = $(item).attr("id");
@@ -30,7 +30,9 @@ function save(tableName){
 			"data":data
 		},function(data){
 			alert(data);
-			window.location = basePath+"deerSYS/to"+tableName+"List.do";
+			if(redirect){
+				window.location = basePath+"deerSYS/to"+tableName+"List.do";
+			}
 	});
 }
 

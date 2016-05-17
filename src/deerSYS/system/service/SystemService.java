@@ -58,6 +58,27 @@ public class SystemService {
 	}
 	
 	/**
+	 * role维护页面
+	 * deer
+	 */
+	@RequestMapping("/toRole")
+	public ModelAndView toRole(){
+		ModelAndView mav = new ModelAndView("deerSYS/page/role/role");  
+        return mav;
+	}
+	
+	/**
+	 * 获取roleList数据
+	 * deer
+	 */
+	@RequestMapping("/getRoleList")
+	@ResponseBody
+	public List<HashMap> toRoleList(){
+		List<HashMap> list = systemDao.roleList();
+		return list;
+	}
+	
+	/**
 	 * 提交注册
 	 * deer
 	 */
