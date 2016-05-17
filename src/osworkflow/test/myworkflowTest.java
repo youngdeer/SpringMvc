@@ -4,9 +4,6 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import osworkflow.service.OsWorkflowUtil;
 
 import com.opensymphony.workflow.InvalidActionException;
 import com.opensymphony.workflow.InvalidEntryStateException;
@@ -14,8 +11,9 @@ import com.opensymphony.workflow.InvalidInputException;
 import com.opensymphony.workflow.InvalidRoleException;
 import com.opensymphony.workflow.Workflow;
 import com.opensymphony.workflow.WorkflowException;
-import com.opensymphony.workflow.basic.BasicWorkflow;
 import com.opensymphony.workflow.spi.Step;
+
+import deerSYS.common.ApplicationContextUtil;
 
 public class myworkflowTest {
 
@@ -31,7 +29,8 @@ public class myworkflowTest {
 //        Workflow wf = new BasicWorkflow(caller);
         
 //        spring方式
-        Workflow wf = OsWorkflowUtil.getWorkflow();
+        ApplicationContext context = ApplicationContextUtil.getContext();
+        Workflow wf = (Workflow) context.getBean("workflowTarget");
         
         inputs.put("params1", params1);  
         inputs.put("docTitle", docTitle);  

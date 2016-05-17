@@ -74,7 +74,6 @@
        <bean id="simpleApplyService" class="deerSYS.business.simpleApply.service.imp.SimpleApplyService">
        		<property name="simpleApplyDao" ref="simpleApplyDao"></property>
        		<property name="commonDao" ref="commonDao"></property>
-       		<property name="wf" ref="workflowTarget"></property>
        </bean>
        
        <!-- 事务控制 -->

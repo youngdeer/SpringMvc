@@ -3,6 +3,10 @@ package deerSYS.business.simpleApply.service.imp;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import osworkflow.service.OsWorkflowUtil;
+
 import com.opensymphony.workflow.InvalidActionException;
 import com.opensymphony.workflow.InvalidEntryStateException;
 import com.opensymphony.workflow.InvalidInputException;
@@ -18,17 +22,9 @@ import deerSYS.common.CommonDao;
 @SuppressWarnings("unchecked")
 public class SimpleApplyService implements ISimpleApplyService{
 	
-	private Workflow wf;
 	private SimpleApplyDao simpleApplyDao;
 	private CommonDao commonDao;
-	
-	public Workflow getWf() {
-		return wf;
-	}
 
-	public void setWf(Workflow wf) {
-		this.wf = wf;
-	}
 	public CommonDao getCommonDao() {
 		return commonDao;
 	}
@@ -51,39 +47,51 @@ public class SimpleApplyService implements ISimpleApplyService{
 	}
 
 	@Override
-	public HashMap beforeSave() throws InvalidActionException, InvalidRoleException, InvalidInputException, InvalidEntryStateException, WorkflowException {
+	public HashMap beforeSave(HttpServletRequest request) throws InvalidActionException, InvalidRoleException, InvalidInputException, InvalidEntryStateException, WorkflowException{
 		HashMap outputData = new HashMap();
-		HashMap inputs = new HashMap();
-		inputs.put("params1", "params1");  
-        inputs.put("docTitle", "docTitle"); 
-		
-		long workflowId = wf.initialize("mytest", 100, inputs); 
-		Step currentStep = (Step) wf.getCurrentSteps(workflowId).iterator().next();
-		String workflowStatus = currentStep.getStatus();
-		outputData.put("workflowId", workflowId);
-		outputData.put("workflowStatus", workflowStatus);
+		try {
+			Workflow wf = OsWorkflowUtil.getWorkflow(request);
+			
+			HashMap inputs = new HashMap();
+			inputs.put("params1", "params1");  
+	        inputs.put("docTitle", "docTitle"); 
+			
+			long workflowId = wf.initialize("mytest", 100, inputs); 
+			Step currentStep = (Step) wf.getCurrentSteps(workflowId).iterator().next();
+			String workflowStatus = currentStep.getStatus();
+			outputData.put("workflowId", workflowId);
+			outputData.put("workflowStatus", workflowStatus);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return outputData;
 	}
 
 	@Override
-	public void doAction(String simpleApplyId) throws InvalidInputException, WorkflowException {
-		HashMap searchMap = new HashMap();
-		searchMap.put("simpleApplyId", simpleApplyId);
-		List simpleApplyList = simpleApplyDao.simpleApplyList(searchMap);
-		HashMap simpleApplyMap = (HashMap) simpleApplyList.get(0);
-		long workflowId = Integer.parseInt((String) simpleApplyMap.get("workflowId"));
+	public void doAction(String simpleApplyId,HttpServletRequest request){
+		try {
+			Workflow wf = OsWorkflowUtil.getWorkflow(request);
+			HashMap searchMap = new HashMap();
+			searchMap.put("simpleApplyId", simpleApplyId);
+			List simpleApplyList = simpleApplyDao.simpleApplyList(searchMap);
+			HashMap simpleApplyMap = (HashMap) simpleApplyList.get(0);
+			long workflowId = Integer.parseInt((String) simpleApplyMap.get("workflowId"));
+			
+			HashMap inputs = new HashMap();
+			inputs.put("params1", "params1");  
+	        inputs.put("docTitle", "docTitle"); 
+			
+			wf.doAction(workflowId, 1, inputs);
+			Step currentStep = (Step) wf.getCurrentSteps(workflowId).iterator().next();
+			String workflowStatus = currentStep.getStatus();
+			simpleApplyMap.put("workflowStatus", workflowStatus);
+			commonDao.update("simpleApply", simpleApplyMap);
+//			测试事务
+//			int j = 1/0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		HashMap inputs = new HashMap();
-		inputs.put("params1", "params1");  
-        inputs.put("docTitle", "docTitle"); 
-		
-		wf.doAction(workflowId, 1, inputs);
-		Step currentStep = (Step) wf.getCurrentSteps(workflowId).iterator().next();
-		String workflowStatus = currentStep.getStatus();
-		simpleApplyMap.put("workflowStatus", workflowStatus);
-		commonDao.update("simpleApply", simpleApplyMap);
-//		测试事务
-//		int j = 1/0;
 	}
-	
 }

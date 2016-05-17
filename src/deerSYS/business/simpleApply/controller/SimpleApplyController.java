@@ -3,6 +3,8 @@ package deerSYS.business.simpleApply.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,10 +63,10 @@ public class SimpleApplyController {
 	 */
 	@RequestMapping("/beforeSave")
 	@ResponseBody
-	public HashMap beforeSave(){
+	public HashMap beforeSave(HttpServletRequest request){
 		HashMap outputData = new HashMap();
 		try {
-			outputData = simpleApplyService.beforeSave();
+			outputData = simpleApplyService.beforeSave(request);
 		} catch (InvalidActionException e) {
 			e.printStackTrace();
 		} catch (InvalidRoleException e) {
@@ -87,15 +89,9 @@ public class SimpleApplyController {
 	 */
 	@RequestMapping("/doAction")
 	@ResponseBody
-	public boolean doAction(@RequestParam("simpleApplyId")String simpleApplyId){
+	public boolean doAction(@RequestParam("simpleApplyId")String simpleApplyId,HttpServletRequest request){
 		boolean result = true;
-		try {
-			simpleApplyService.doAction(simpleApplyId);
-		} catch (InvalidInputException e) {
-			e.printStackTrace();
-		} catch (WorkflowException e) {
-			e.printStackTrace();
-		}
+		simpleApplyService.doAction(simpleApplyId,request);
 		return result;
 	}
 }

@@ -14,12 +14,6 @@
 	        org.springframework.web.context.ContextLoaderListener  
 	    </listener-class>  
 	</listener>  
-	
-	<listener>  
-        <listener-class>  
-            org.springframework.web.context.request.RequestContextListener  
-        </listener-class>  
-	</listener>
 	  
 	<!-- 加载spring的xml配置文件到 spring的上下文容器中 -->  
 <!--	<context-param>  -->
