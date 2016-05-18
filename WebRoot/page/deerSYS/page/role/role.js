@@ -5,7 +5,15 @@ window.onload = function(){
 		});
 	});
 	
-	$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+	ajax("get",basePath+"deerSYS/getRoleTree.do",{},function(data){
+		var render = {
+			content : ""
+		};
+		renderRoleTree(data,render);
+//		alert(render.content);
+		$("#roleTree").append(render.content);
+		
+		$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
   　　	$('.tree li.parent_li > span').on('click', function (e) {
     　　		var children = $(this).parent('li.parent_li').find(' > ul > li');
     　　		if (children.is(":visible")) {
@@ -17,6 +25,9 @@ window.onload = function(){
     　　		}
     　　		e.stopPropagation();
   　　	});
+	});
+	
+	
 }
 
 /**
@@ -25,4 +36,20 @@ window.onload = function(){
  */
 function chooseParentRole(obj){
 	$("#parentId").val($(obj).val());
+}
+
+/**
+ * 组装roleTree
+ * deer
+ */
+function renderRoleTree(data,render){
+	render.content += "<ul>"
+	$.each(data,function(index,item){
+		render.content +="<li><span><i class='icon-folder-open'></i>"+item.roleName+"</span> <a href=''></a>";
+		if(item.children.length > 0){
+			renderRoleTree(item.children,render);
+		}
+		render.content +="</li>";
+	});
+	render.content += "</ul>";
 }

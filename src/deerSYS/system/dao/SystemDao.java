@@ -16,7 +16,7 @@ public class SystemDao extends SqlSessionDaoSupport{
 		return this.getSqlSession().selectList("deerSYS.system.dao.mapper.SystemDaoMapper.userAccountList", searchMap);
 	}
 	
-	public List<HashMap> roleList(){
-		return this.getSqlSession().selectList("deerSYS.system.dao.mapper.SystemDaoMapper.roleList");
+	public List<HashMap> roleList(HashMap searchMap){
+		return this.getSqlSession().selectList("deerSYS.system.dao.mapper.SystemDaoMapper.roleList", searchMap);
 	}
 }

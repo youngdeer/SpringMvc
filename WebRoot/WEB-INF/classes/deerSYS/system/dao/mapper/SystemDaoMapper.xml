@@ -19,8 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 	</select>
 	
-	<select id="roleList" resultType="HashMap">
+	<select id="roleList" parameterType="HashMap" resultType="HashMap">
 		select * from role
 			where 1=1
+			<if test="parentId!=null">
+				and parentId = #{parentId}
+			</if>
 	</select>
 </mapper>

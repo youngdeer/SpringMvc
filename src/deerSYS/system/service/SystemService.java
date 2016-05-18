@@ -63,7 +63,7 @@ public class SystemService {
 	 */
 	@RequestMapping("/toRole")
 	public ModelAndView toRole(){
-		ModelAndView mav = new ModelAndView("deerSYS/page/role/role");  
+		ModelAndView mav = new ModelAndView("deerSYS/page/role/role");
         return mav;
 	}
 	
@@ -73,8 +73,34 @@ public class SystemService {
 	 */
 	@RequestMapping("/getRoleList")
 	@ResponseBody
-	public List<HashMap> toRoleList(){
-		List<HashMap> list = systemDao.roleList();
+	public List<HashMap> getRoleList(){
+		List<HashMap> list = systemDao.roleList(new HashMap());
+		return list;
+	}
+	
+	/**
+	 * 获取roleListTree
+	 * deer
+	 */
+	@RequestMapping("/getRoleTree")
+	@ResponseBody
+	public List<HashMap> getRoleTree(){
+		return getRoleList("");
+	}
+	
+	public List<HashMap> getRoleList(String parentId){
+		HashMap searchMap = new HashMap();
+		searchMap.put("parentId", parentId);
+		List<HashMap> list = systemDao.roleList(searchMap);
+		
+		if(list.size() > 0 && list != null){
+			for(int i = 0; i < list.size(); i++){
+				HashMap map = list.get(i);
+				String roleId = (String) map.get("roleId");
+				List<HashMap> children = getRoleList(roleId);
+				map.put("children", children);
+			}
+		}
 		return list;
 	}
 	
