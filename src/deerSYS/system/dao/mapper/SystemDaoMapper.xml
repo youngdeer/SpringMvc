@@ -26,4 +26,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and parentId = #{parentId}
 			</if>
 	</select>
+	
+	<insert id="insertUserRole" parameterType="HashMap">
+		insert into userRole values(uuid(),#{userId},#{roleId});
+	</insert>
+	
+	<delete id="deleteUserRole" parameterType="HashMap">
+		delete from userRole
+			where 1=1
+			<if test="userId!='' and userId!=null">
+				and userId = #{userId}
+			</if>
+	</delete>
 </mapper>

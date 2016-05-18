@@ -105,6 +105,32 @@ public class SystemService {
 	}
 	
 	/**
+	 * userrole维护页面
+	 * deer
+	 */
+	@RequestMapping("/toUserRole")
+	public ModelAndView toUserRole(){
+		ModelAndView mav = new ModelAndView("deerSYS/page/role/userRole");
+		List<HashMap> userAccountList = systemDao.userAccountList(new HashMap());
+		mav.addObject("userAccountList", userAccountList);
+        return mav;
+	}
+	
+	/**
+	 * 提交userrole绑定关系
+	 * deer
+	 * @return
+	 */
+	@RequestMapping("/submitUserRole")
+	@ResponseBody
+	public HashMap submitUserRole(@RequestParam("checkedUser") String checkedUser,@RequestParam("checkedRole") String checkedRole){
+		HashMap outputData = new HashMap();
+		System.out.println(checkedUser+"  "+checkedRole);
+		
+        return outputData;  
+	}
+	
+	/**
 	 * 提交注册
 	 * deer
 	 */
