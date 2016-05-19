@@ -32,6 +32,8 @@ function save(tableName,redirect){
 			alert(data);
 			if(redirect){
 				window.location = basePath+"deerSYS/to"+tableName+"List.do";
+			}else{
+				window.location.reload();
 			}
 	});
 }
