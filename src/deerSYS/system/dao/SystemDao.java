@@ -27,4 +27,8 @@ public class SystemDao extends SqlSessionDaoSupport{
 	public int insertUserRole(HashMap map){
 		return this.getSqlSession().insert("deerSYS.system.dao.mapper.SystemDaoMapper.insertUserRole", map);
 	}
+	
+	public List<HashMap> userRoleList(HashMap searchMap){
+		return this.getSqlSession().selectList("deerSYS.system.dao.mapper.SystemDaoMapper.userRoleList", searchMap);
+	}
 }

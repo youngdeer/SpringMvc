@@ -77,6 +77,10 @@ function bind(){
 		checkedUser:$("#checkedUser").val(),
 		checkedRole:$("#checkedRole").val(),
 	},function(data){
-		
+		alert(data.result)
+		if(data.result == true){
+			alert("success!");
+			window.location.reload();
+		}
 	});
 }

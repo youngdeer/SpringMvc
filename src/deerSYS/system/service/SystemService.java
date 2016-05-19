@@ -125,8 +125,29 @@ public class SystemService {
 	@ResponseBody
 	public HashMap submitUserRole(@RequestParam("checkedUser") String checkedUser,@RequestParam("checkedRole") String checkedRole){
 		HashMap outputData = new HashMap();
-		System.out.println(checkedUser+"  "+checkedRole);
-		
+		String[] users = checkedUser.substring(0, checkedUser.length()-1).split(",");
+		String[] roles = checkedRole.substring(0, checkedRole.length()-1).split(",");
+		HashMap searchMap = new HashMap();
+		HashMap newUserRole = new HashMap();
+		if(users.length > 0){
+			for(String user:users){
+//				System.out.println("user: "+user);
+				searchMap.put("userId", user);
+				newUserRole.put("userId", user);
+				List<HashMap> list = systemDao.userRoleList(searchMap);
+				if(list != null && list.size() > 0){
+					systemDao.deleteUserRole(searchMap);
+				}
+				if(roles.length > 0){
+					for(String role:roles){
+//						System.out.println("role: "+role);
+						newUserRole.put("roleId", role);
+						systemDao.insertUserRole(newUserRole);
+					}
+				}
+			}
+		}
+		outputData.put("result", true);
         return outputData;  
 	}
 	

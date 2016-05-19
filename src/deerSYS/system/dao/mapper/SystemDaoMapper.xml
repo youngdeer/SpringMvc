@@ -38,4 +38,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and userId = #{userId}
 			</if>
 	</delete>
+	
+	<select id="userRoleList" parameterType="HashMap" resultType="HashMap">
+		select * from userRole
+			where 1=1
+			<if test="userId!='' and userId!=null">
+				and userId = #{userId}
+			</if>
+	</select>
 </mapper>
