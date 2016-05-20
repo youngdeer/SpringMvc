@@ -61,5 +61,6 @@
 	<classpathentry kind="lib" path="E:/ly_personal/osworkflow-2.8.0.jar"/>
 	<classpathentry kind="lib" path="E:/ly_personal/osworkflow-2.8.0/lib/core/oscore-2.2.5.jar"/>
 	<classpathentry kind="lib" path="E:/ly_personal/osworkflow-2.8.0/lib/core/propertyset-1.4.jar"/>
+	<classpathentry kind="lib" path="E:/ly_personal/jedis-2.8.0.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
