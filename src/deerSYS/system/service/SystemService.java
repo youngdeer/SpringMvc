@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import redis.clients.jedis.Jedis;
+
 import deerSYS.common.ApplicationContextUtil;
 import deerSYS.common.CommonUtil;
+import deerSYS.common.RedisUtil;
 import deerSYS.system.dao.SystemDao;
 
 @Controller
@@ -24,6 +27,8 @@ public class SystemService {
 	
 	ApplicationContext context = ApplicationContextUtil.getContext();
 	SystemDao systemDao = (SystemDao) context.getBean("systemDao");
+	
+	Jedis jedis = RedisUtil.getJedis();
 	
 	CommonUtil commonUtil = new CommonUtil();
 	
@@ -213,7 +218,10 @@ public class SystemService {
 			HttpServletRequest request, HttpServletResponse response){
 		HashMap outputData = new HashMap();
 		if(isMatch(username,password)){
+			//使用session操作会话
 			commonUtil.addSession(request, "username", username);
+			//使用redis操作会话
+			jedis.setex("username", 5, username);
 //			System.out.println(request.getSession().getAttribute("username"));
 			outputData.put("result", 1);
 		}else{
@@ -228,8 +236,11 @@ public class SystemService {
 	 */
 	@RequestMapping("/userLogout")
 	public ModelAndView userLogout(HttpServletRequest request, HttpServletResponse response){
-		ModelAndView mav = new ModelAndView("deerSYS/page/index/index");  
+		ModelAndView mav = new ModelAndView("deerSYS/page/index/index"); 
+		//使用session操作会话
 		commonUtil.removeSession(request, "username");
+		//使用redis操作会话
+		jedis.del("username");
         return mav; 
 	}
 }
