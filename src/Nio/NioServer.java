@@ -52,7 +52,7 @@ public class NioServer {
 					if(content.length() > 0){
 						for(SelectionKey skey:selector.selectedKeys()){
 							Channel targetChannel = skey.channel();
-							//如果该channel是SocketChannel，九江读取到得内容写入该channel里去
+							//如果该channel是SocketChannel，就将读取到得内容写入该channel里去
 							if(targetChannel instanceof SocketChannel){
 								SocketChannel dest = (SocketChannel) targetChannel;
 								dest.write(charset.encode(content));

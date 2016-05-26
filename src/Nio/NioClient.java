@@ -28,8 +28,7 @@ public class NioClient {
 		new ClientThread().start();
 		//创建键盘输入流  
         Scanner scan=new Scanner(System.in);  
-        while(scan.hasNextLine()){
-        	System.out.println("--------------------");
+        while(scan.hasNextLine()){  
             //读取键盘的输入  
             String line=scan.nextLine();  
             //将键盘的内容输出到SocketChanenel中  
