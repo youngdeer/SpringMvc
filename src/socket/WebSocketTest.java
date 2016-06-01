@@ -19,8 +19,7 @@ public class WebSocketTest {
 		int sendMessages = 0;
 		while(sendMessages < 3){
 			Thread.sleep(5000);
-			session.getBasicRemote().
-	        sendText("This is an intermediate server message. Count: "+ sendMessages);
+			session.getBasicRemote().sendText("This is an intermediate server message. Count: "+ sendMessages);
 			sendMessages++;
 		}
 		
