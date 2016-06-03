@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<script src="../react/js/react.js"></script>
+	<script src="../react/js/react-dom.js"></script>
+	<script src="../react/js/browser.min.js"></script>
+  </head>
+  <body>
+	<div id="example_01"></div>
+	<hr/>
+	<div id="example_02"></div>
+	<hr/>
+	<div id="example_03"></div>
+	<hr/>
+	<script type="text/babel"> // text/babel 标签启用jsx
+		var LikeButtom = React.createClass({ //组件命名必须首字母大写，组件类只能包含一个顶层标签
+			getInitialState : function(){
+				return {liked:false};
+			},
+			handleClick : function(event){
+				this.setState({liked: !this.state.liked});
+			},
+			render : function(){
+				var text = this.state.liked ? 'like' : 'do not like';
+				return (<p onClick={this.handleClick}>you {text} clike this. click to toggle.</p>);
+			}
+		});
+		ReactDOM.render(
+			<LikeButtom/>,
+			document.getElementById('example_01')
+		);
+
+		var Input = React.createClass({
+			getInitialState : function(){
+				return {value:'hello'};
+			},
+			handleChange : function(event){
+				this.setState({value: event.target.value});
+			},
+			render : function(){
+				var value = this.state.value;
+				return (
+					<div>
+						<input type='text' value={value} onChange={this.handleChange}/>
+						<p>{value}</p>
+					</div>
+				);
+			}
+		});
+		ReactDOM.render(
+			<Input/>,
+			document.getElementById('example_02')
+		);
+
+
+		var Hello = React.createClass({
+			getInitialState : function(){
+				return {opacity:1.0};
+			},
+			componentDidMount : function(){
+				this.timer = setInterval(function(){
+					var opacity = this.state.opacity;
+					opacity -= 0.05;
+					if(opacity < 0.1){
+						opacity = 1.0;
+					}
+					this.setState({opacity:opacity});
+				}.bind(this),100);
+			},
+			render : function(){
+				return (
+					<div style = {{opacity:this.state.opacity}}> hello {this.props.name}</div>
+				)
+			}
+		});
+		ReactDOM.render(
+			<Hello name='deer'/>,
+			document.getElementById('example_03')
+		);
+	</script>
+  </body>
+</html>

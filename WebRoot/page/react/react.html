@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<script src="../react/js/react.js"></script>
+	<script src="../react/js/react-dom.js"></script>
+	<script src="../react/js/browser.min.js"></script>
+  </head>
+  <body>
+	<div id="example"></div>
+	<hr/>
+	<div id="example_02"></div>
+	<hr/>
+	<div id="example_03"></div>
+	<hr/>
+	<div id="example_04"></div>
+	<hr/>
+	<div id="example_05"></div>
+	<hr/>
+	<div id="example_06"></div>
+	<hr/>
+	<div id="example_07"></div>
+	<script type="text/babel"> // text/babel 标签启用jsx
+	  ReactDOM.render(
+		<h1>hello,deer</h1>,
+		document.getElementById('example')
+	  );
+		
+      var names=['deer','young','lala']
+	  ReactDOM.render(
+		<div>
+			{
+				names.map(function(name){
+					return <div>Hi,{name}</div>
+				})
+			}
+		</div>,
+		document.getElementById('example_02')
+	  );
+
+	  var array = [<h1>hi,deer</h1>,<h2>hi,deer</h2>];
+	  ReactDOM.render(
+		<div>{array}</div>,
+		document.getElementById('example_03')
+	  );
+
+	  var HelloMessage = React.createClass({
+		render : function(){
+			return <h1>hi,{this.props.name}</h1>;
+		}
+	  });
+	  ReactDOM.render(
+		<HelloMessage name='message'/>,
+		document.getElementById('example_04')
+	  );
+
+	  var NodeList = React.createClass({
+			render : function(){
+				return (
+					<ol>{
+						React.Children.map(this.props.children,function(child){
+								return <li>{child}</li>
+							}
+						)
+					}</ol>
+				);
+			}
+		}
+	  );
+	  ReactDOM.render(
+		<NodeList>
+			<span>hi,li_1</span>
+			<span>hi,li_2</span>
+		</NodeList>,
+		document.getElementById('example_05')
+	  );
+
+	  var MyTitle = React.createClass({
+			propTypes : {
+				title : React.PropTypes.string.isRequired
+			},
+			render : function(){
+				return <h1>{this.props.title}</h1>;
+			}
+		}
+	  );
+	  // var data = 123; title设置了类型校验，这样传值会有warning
+	  var data = "title is string";
+	  ReactDOM.render(
+		<MyTitle title={data}/>,
+		document.getElementById('example_06')
+	  );
+
+	  var MyComponent = React.createClass({
+			handleClick : function(){
+				this.refs.myTextInput.focus();
+			},
+			render : function(){
+				return (
+					<div>
+						<input type='text' ref='myTextInput'/>
+						<input type='button' value='focus this input' Click={this.handleClick}/>
+					</div>
+				);
+			}
+	  });
+	  ReactDOM.render(
+		<MyComponent/>,
+		document.getElementById('example_07')
+	  );
+	</script>
+  </body>
+</html>

@@ -1,5 +1,7 @@
-#Tue Apr 12 15:37:20 GMT+08:00 2016
+#Fri Jun 03 17:09:49 GMT+08:00 2016
 eclipse.preferences.version=1
+encoding//WebRoot/page/react/react.html=gbk
+encoding//WebRoot/page/react/react_02.html=gbk
 encoding//src/org/swinglife/controller/HomeController.java=gbk
 encoding//src/org/swinglife/controller/UnifiedOrderController.java=gbk
 encoding//src/org/swinglife/controller/UserController.java=gbk
