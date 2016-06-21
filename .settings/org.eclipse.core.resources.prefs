@@ -1,9 +1,11 @@
-#Fri Jun 03 17:09:49 GMT+08:00 2016
+#Tue Jun 21 20:56:20 CST 2016
 eclipse.preferences.version=1
 encoding//WebRoot/page/react/react.html=gbk
 encoding//WebRoot/page/react/react_02.html=gbk
+encoding//WebRoot/page/websocket.html=UTF-8
 encoding//src/org/swinglife/controller/HomeController.java=gbk
 encoding//src/org/swinglife/controller/UnifiedOrderController.java=gbk
 encoding//src/org/swinglife/controller/UserController.java=gbk
 encoding//src/org/swinglife/util=gbk
 encoding//src/org/swinglife/util/MD5.java=gbk
+encoding/<project>=UTF-8

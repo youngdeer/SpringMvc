@@ -23,6 +23,7 @@
 				<p>
 					<a href="<%=basePath%>deerSYS/toLogin.do" class="btn btn-primary btn-large">login</a>
 					<a href="<%=basePath%>deerSYS/toRegist.do" class="btn btn-large">register</a>
+					<a href="javascript:void(0);" class="btn btn-large" onclick="getHtml()">getHtml</a>
 				</p>
 			</div>
 			<div class="row">
@@ -37,6 +38,8 @@
 			</div>
 			<hr>
 			<%@include file="/page/deerSYS/page/common/footer.jsp"%>
+		</div>
+		<div id="getHtmlFromController">
 		</div>
 	</body>
 </html>

@@ -1,5 +1,7 @@
 package deerSYS.common;
 
+import io.GetHtml;
+
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import deerSYS.common.service.ICommonService;
 
@@ -86,5 +89,16 @@ public class CommonUtil {
 			map.put(key, messageData.get(key));
 		}
 		return map;
+	}
+	
+	/**
+	 * getHtml
+	 */
+	@RequestMapping("/getHtml")
+	public ModelAndView getHtml(){
+		ModelAndView mav = new ModelAndView("");  
+		GetHtml getHtml = new GetHtml();
+		mav.addObject("command", getHtml.getHtml("E:/SpringMvc/WebRoot/page/websocket.html"));
+		return mav;
 	}
 }
