@@ -5,7 +5,7 @@
 			<a data-toggle="collapse" data-target=".nav-collapse"
 				class="btn btn-navbar"><span class="icon-bar"></span><span
 				class="icon-bar"></span><span class="icon-bar"></span>
-			</a><a href="<%=basePath%>deerSYS/toIndex.html" class="brand">deerSYS</a>
+			</a><a href="<%=basePath%>deerSYS/toIndex.do" class="brand">deerSYS</a>
 			<div class="nav-collapse">
 				<ul class="nav">
 					<c:if test="${empty username}">

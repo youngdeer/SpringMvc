@@ -98,7 +98,7 @@ public class CommonUtil {
 	public ModelAndView getHtml(){
 		ModelAndView mav = new ModelAndView("");  
 		GetHtml getHtml = new GetHtml();
-		mav.addObject("command", getHtml.getHtml("E:/SpringMvc/WebRoot/page/websocket.html"));
+		mav.addObject("command", getHtml.getHtml("E:/workspace/SpringMvc/WebRoot/page/websocket.html"));
 		return mav;
 	}
 }
