@@ -4,3 +4,14 @@ function getHtml(){
 		$("#getHtmlFromController").append(data.command);
 	});
 }
+
+function pupupu(){
+	$('#qipao').thoughtBubble({
+      text: 'baby,I love you',
+      font: 'avenir'
+
+   });
+	$('#qipao').mouseenter();
+	
+//	setTimeout("$('#qipao').mouseout();",5000); 
+}
