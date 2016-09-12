@@ -46,7 +46,7 @@
 					<c:forEach items="${userInfoList}" var="v">
 						<tr>
 							<td>
-								${v.userInfoId}
+								${v.UserInfoId}
 							</td>
 							<td>
 								${v.truename}

@@ -28,7 +28,7 @@ $.fn.thoughtBubble = function( defaults ) {
 
     getMainBubble = function() {
 
-        return '<div class="main-bubble-holder"><div class="bubble main-bubble">' + getText() + '</div></div>';
+        return '<div class="main-bubble-holder"><div class="bubble main-bubble" onclick="var bubbles = $(document).find(\'.bubble\');bubbles.stop().animate({opacity: 0});">' + getText() + '</div></div>';
 
     },
 

@@ -26,7 +26,7 @@
 					<a href="<%=basePath%>deerSYS/toRegist.do" class="btn btn-large">register</a>
 					<a href="javascript:void(0);" class="btn btn-large" onclick="getHtml()">getHtml</a>
 					<a href="javascript:void(0);" class="btn btn-large" onclick="pupupu()">pupupu</a>
-					<a id="qipao">qipao</a>
+					<a id="qipao" style="display:none;">qipao</a>
 				</p>
 			</div>
 			<div class="row">
